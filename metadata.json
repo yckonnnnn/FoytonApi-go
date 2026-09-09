@@ -1,0 +1,6 @@
+{
+  "name": "drewl. - Digital Agency & AI API Hub",
+  "description": "Foyton API 企业级大模型与 Agent 智能体统一入口，一站式中转聚合 Claude 3.7、GPT-4o、DeepSeek 与 Gemini，提供高可用容灾与极低延迟专线接入。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
