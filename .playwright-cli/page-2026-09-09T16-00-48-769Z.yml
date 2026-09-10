@@ -1,0 +1,100 @@
+- generic [ref=f1e987]:
+  - banner [ref=f1e988]:
+    - button "Foyton Console API 密钥管理" [ref=f1e1225]:
+      - generic [ref=f1e990] [cursor=pointer]
+      - generic [ref=f1e1001]:
+        - generic [ref=f1e1002]: Foyton Console
+        - generic [ref=f1e1003]: API 密钥管理
+    - button "¥382.40" [ref=f1e1005] [cursor=pointer]
+  - navigation "控制台导航" [ref=f1e1010]:
+    - button "控制台概览" [ref=f1e1011]
+    - button "Token 用量" [ref=f1e1018]
+    - button "API 密钥管理" [active] [ref=f1e1022]
+    - button "钱包充值" [ref=f1e1028]
+    - button "消费明细" [ref=f1e1033]
+  - main [ref=f1e1038]:
+    - generic [ref=f1e1226]:
+      - generic [ref=f1e1227]:
+        - generic [ref=f1e1228]:
+          - generic [ref=f1e1229]:
+            - generic [ref=f1e1230]: 开发者访问控制
+            - heading "管理你的 API 密钥" [level=1] [ref=f1e1240]
+            - paragraph [ref=f1e1241]: 为不同应用创建独立凭证，清楚掌握调用状态与本月用量。密钥只在创建时完整显示一次。
+          - button "创建新密钥" [ref=f1e1242]
+        - generic [ref=f1e1244]:
+          - generic [ref=f1e1245]:
+            - generic [ref=f1e1246]: 活跃密钥
+            - generic [ref=f1e1247]: "3"
+          - generic [ref=f1e1248]:
+            - generic [ref=f1e1249]: 本月用量
+            - generic [ref=f1e1250]: ¥289.4
+          - generic [ref=f1e1251]:
+            - generic [ref=f1e1252]: 服务状态
+            - generic [ref=f1e1253]: 运行正常
+      - generic [ref=f1e1255]:
+        - generic [ref=f1e1256]:
+          - generic [ref=f1e1257]:
+            - generic [ref=f1e1258]: 快速接入
+            - paragraph [ref=f1e1263]: 选择兼容协议并复制接入配置
+          - tablist "兼容协议" [ref=f1e1264]:
+            - tab "OpenAI" [selected] [ref=f1e1265]
+            - tab "Anthropic" [ref=f1e1266]
+        - generic [ref=f1e1267]:
+          - generic [ref=f1e1268]:
+            - generic [ref=f1e1269]:
+              - generic [ref=f1e1270]: Base URL
+              - button [ref=f1e1271]:
+                - code [ref=f1e1272]: https://fytapi.com/v1
+              - paragraph [ref=f1e1282]: 请把密钥存放在服务端环境变量中，不要写进网页代码或公开仓库。
+            - generic [ref=f1e1283]: /chat/completions
+          - generic [ref=f1e1287]:
+            - generic [ref=f1e1288]:
+              - generic [ref=f1e1289]:
+                - button "Python" [ref=f1e1290]
+                - button "Node.js" [ref=f1e1291]
+              - button "复制代码" [ref=f1e1292]
+            - code [ref=f1e1297]: from openai import OpenAI client = OpenAI( api_key="sk-fyt-...", base_url="https://fytapi.com/v1" )
+      - generic [ref=f1e1298]:
+        - generic [ref=f1e1299]:
+          - generic [ref=f1e1300]:
+            - generic [ref=f1e1301]:
+              - heading "密钥列表" [level=2] [ref=f1e1302]
+              - generic [ref=f1e1303]: 3 个活跃
+            - paragraph [ref=f1e1304]: 建议每个应用单独使用一个密钥，便于追踪和及时停用。
+          - generic [ref=f1e1305]:
+            - text: 总预算
+            - generic [ref=f1e1306]: ¥1250
+        - generic [ref=f1e1308]:
+          - article [ref=f1e1309]:
+            - generic [ref=f1e1315]:
+              - heading "Production Agent Gateway" [level=3] [ref=f1e1316]
+              - button "sk-fyt-9a8b****************************72fe" [ref=f1e1317]
+            - generic [ref=f1e1323]:
+              - generic [ref=f1e1324]: ¥234.5
+              - generic [ref=f1e1325]: / ¥1000
+            - generic [ref=f1e1328]: 2 分钟前
+            - generic [ref=f1e1333]:
+              - generic [ref=f1e1334]: 使用中
+              - button "停用密钥 Production Agent Gateway" [ref=f1e1336]
+          - article [ref=f1e1340]:
+            - generic [ref=f1e1346]:
+              - heading "Development & Cursor IDE" [level=3] [ref=f1e1347]
+              - button "sk-fyt-4d2c****************************89ea" [ref=f1e1348]
+            - generic [ref=f1e1354]:
+              - generic [ref=f1e1355]: ¥42.1
+              - generic [ref=f1e1356]: / ¥200
+            - generic [ref=f1e1359]: 1 小时前
+            - generic [ref=f1e1364]:
+              - generic [ref=f1e1365]: 使用中
+              - button "停用密钥 Development & Cursor IDE" [ref=f1e1367]
+          - article [ref=f1e1371]:
+            - generic [ref=f1e1377]:
+              - heading "CI/CD Automated E2E Bench" [level=3] [ref=f1e1378]
+              - button "sk-fyt-1b77****************************550a" [ref=f1e1379]
+            - generic [ref=f1e1385]:
+              - generic [ref=f1e1386]: ¥12.8
+              - generic [ref=f1e1387]: / ¥50
+            - generic [ref=f1e1390]: 3 天前
+            - generic [ref=f1e1395]:
+              - generic [ref=f1e1396]: 使用中
+              - button "停用密钥 CI/CD Automated E2E Bench" [ref=f1e1398]

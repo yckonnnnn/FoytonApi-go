@@ -63,6 +63,12 @@
     }
   }
 
+  @keyframes orbit-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   .animate-spin-slow {
     animation: spin-slow 90s linear infinite;
   }
@@ -85,5 +91,47 @@
 
   .animate-lightning {
     animation: lightning-flicker 2s ease-in-out infinite;
+  }
+
+  @keyframes vessel-flow {
+    to {
+      stroke-dashoffset: -50;
+    }
+  }
+
+  @keyframes node-pulse {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* 厂商节点绕中枢公转；图标自身反向自转，保持始终正立 */
+  .animate-orbit {
+    animation: orbit-spin 40s linear infinite;
+  }
+
+  .animate-orbit-counter {
+    animation: orbit-spin 40s linear infinite reverse;
+  }
+
+  /* 大脑内部：血管/神经纤维上的信号流动 + 神经节点呼吸 */
+  .animate-vessel-flow {
+    animation: vessel-flow 2.6s linear infinite;
+  }
+
+  .animate-node-pulse {
+    animation: node-pulse 3.2s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-orbit,
+    .animate-orbit-counter,
+    .animate-vessel-flow,
+    .animate-node-pulse {
+      animation: none;
+    }
   }
 }

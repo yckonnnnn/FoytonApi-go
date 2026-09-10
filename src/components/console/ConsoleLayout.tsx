@@ -3,28 +3,19 @@ import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { ConsoleTab } from '../../types';
 import { FoytonLogo } from '../FoytonLogo';
-import { ConsoleOverview } from './ConsoleOverview';
 import { ConsoleWallet } from './ConsoleWallet';
 import { ConsoleApiKeys } from './ConsoleApiKeys';
 import { ConsoleTokenUsage } from './ConsoleTokenUsage';
 import { ConsoleBillingLogs } from './ConsoleBillingLogs';
-import { 
-  LayoutDashboard, 
-  Wallet, 
-  Key, 
-  Activity, 
-  Receipt, 
-  ArrowLeft, 
-  LogOut, 
-  Globe, 
-  CheckCircle2,
-  ChevronRight,
-  Sparkles,
-  ExternalLink,
-  ShieldCheck,
-  Zap,
-  SlidersHorizontal,
-  ChevronDown
+import {
+  Wallet,
+  Key,
+  Activity,
+  Receipt,
+  ArrowLeft,
+  LogOut,
+  Globe,
+  ChevronRight
 } from 'lucide-react';
 
 interface ConsoleLayoutProps {
@@ -33,7 +24,7 @@ interface ConsoleLayoutProps {
 }
 
 export const ConsoleLayout: React.FC<ConsoleLayoutProps> = ({
-  initialTab = 'overview',
+  initialTab = 'tokens',
   onNavigateHome,
 }) => {
   const { user, logout, openAuthModal } = useAuth();
@@ -51,43 +42,38 @@ export const ConsoleLayout: React.FC<ConsoleLayoutProps> = ({
     items: { id: ConsoleTab; label: string; icon: React.ReactNode; badge?: string }[];
   }[] = [
     {
-      groupTitle: language === 'zh' ? '总览与监控' : 'OVERVIEW',
+      groupTitle: language === 'zh' ? '用量与监控' : 'USAGE & MONITORING',
       items: [
-        { 
-          id: 'overview', 
-          label: language === 'zh' ? '控制台概览' : 'Overview', 
-          icon: <LayoutDashboard className="w-4 h-4" /> 
-        },
-        { 
-          id: 'tokens', 
-          label: language === 'zh' ? 'Token 用量' : 'Token Usage', 
-          icon: <Activity className="w-4 h-4" /> 
+        {
+          id: 'tokens',
+          label: language === 'zh' ? 'Token 用量' : 'Token Usage',
+          icon: <Activity className="w-4 h-4" />
         },
       ]
     },
     {
       groupTitle: language === 'zh' ? '开发与接入' : 'DEVELOPMENT',
       items: [
-        { 
-          id: 'apikeys', 
-          label: language === 'zh' ? 'API 密钥管理' : 'API Keys', 
-          icon: <Key className="w-4 h-4" /> 
+        {
+          id: 'apikeys',
+          label: language === 'zh' ? 'API 密钥管理' : 'API Keys',
+          icon: <Key className="w-4 h-4" />
         },
       ]
     },
     {
       groupTitle: language === 'zh' ? '财务与计费' : 'BILLING',
       items: [
-        { 
-          id: 'wallet', 
-          label: language === 'zh' ? '钱包充值' : 'Wallet & Top-up', 
+        {
+          id: 'wallet',
+          label: language === 'zh' ? '钱包充值' : 'Wallet & Top-up',
           icon: <Wallet className="w-4 h-4" />,
           badge: language === 'zh' ? '返 15%' : '+15%'
         },
-        { 
-          id: 'billing', 
-          label: language === 'zh' ? '消费明细' : 'Billing Logs', 
-          icon: <Receipt className="w-4 h-4" /> 
+        {
+          id: 'billing',
+          label: language === 'zh' ? '消费明细' : 'Billing Logs',
+          icon: <Receipt className="w-4 h-4" />
         },
       ]
     }
@@ -137,20 +123,6 @@ export const ConsoleLayout: React.FC<ConsoleLayoutProps> = ({
             >
               <ArrowLeft className="w-4 h-4" />
             </button>
-          </div>
-
-          {/* Project Environment Switcher Pill (B-end High End Pattern) */}
-          <div className="px-3 pt-3 pb-1">
-            <div className="px-3 py-2 rounded-xl bg-neutral-50/80 border border-neutral-200/60 flex items-center justify-between text-xs hover:border-neutral-300 transition-colors cursor-pointer">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 ring-4 ring-emerald-100 animate-pulse" />
-                <div className="flex flex-col text-left">
-                  <span className="font-semibold text-neutral-800 text-[11.5px]">生产级生产集群 (Prod)</span>
-                  <span className="text-[10px] text-neutral-400 font-mono">api.fytapi.com</span>
-                </div>
-              </div>
-              <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />
-            </div>
           </div>
 
           {/* Nav List with Grouping */}
@@ -293,9 +265,6 @@ export const ConsoleLayout: React.FC<ConsoleLayoutProps> = ({
 
         {/* Content Box */}
         <main className="flex-1 p-5 sm:p-7 lg:p-8 max-w-7xl w-full mx-auto">
-          {activeTab === 'overview' && (
-            <ConsoleOverview onSelectTab={(tab) => setActiveTab(tab)} />
-          )}
           {activeTab === 'wallet' && (
             <ConsoleWallet />
           )}

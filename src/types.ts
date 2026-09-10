@@ -1,17 +1,17 @@
-export type ActiveView = 
-  | 'lost-original' 
+export type ActiveView =
+  | 'lost-original'
   | 'models'
   | 'docs'
-  | 'ai-hub' 
-  | 'projects' 
-  | 'pricing' 
-  | 'console-overview'
+  | 'ai-hub'
+  | 'projects'
+  | 'pricing'
+  | 'login'
   | 'console-wallet'
   | 'console-apikeys'
   | 'console-tokens'
   | 'console-billing';
 
-export type ConsoleTab = 'overview' | 'wallet' | 'apikeys' | 'tokens' | 'billing';
+export type ConsoleTab = 'wallet' | 'apikeys' | 'tokens' | 'billing';
 
 export interface UserProfile {
   id: string;

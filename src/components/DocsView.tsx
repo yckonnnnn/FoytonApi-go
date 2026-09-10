@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  Copy, 
-  Check, 
-  Terminal, 
-  Code2, 
-  Server, 
-  Key, 
-  ShieldCheck, 
-  Zap, 
-  ExternalLink,
+import {
+  Copy,
+  Check,
+  Server,
+  Key,
+  ShieldCheck,
   ChevronRight,
   BookOpen,
   ArrowRight,
   Layers,
-  Sparkles
 } from 'lucide-react';
 import { ActiveView } from '../types';
 import { useLanguage } from '../context/LanguageContext';
@@ -28,12 +23,42 @@ export const DocsView: React.FC<DocsViewProps> = ({
   onOpenConsultation,
 }) => {
   const { language } = useLanguage();
+  const [activeProtocol, setActiveProtocol] = useState<'openai' | 'anthropic'>('openai');
   const [activeLang, setActiveLang] = useState<'python' | 'node' | 'curl' | 'go'>('python');
   const [copiedUrl, setCopiedUrl] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
 
-  const BASE_URL = 'https://api.foyton.com/v1';
   const SAMPLE_API_KEY = 'sk-foyton-7a91bf428e034ac1a9e7d23';
+
+  // ─ Protocol config: drives Base URL, Headers, Endpoints ──
+  const protocolConfig = {
+    openai: {
+      baseUrl: 'https://fytapi.com/v1',
+      headerValue: 'Authorization: Bearer sk-foyton-...',
+      description: language === 'zh'
+        ? 'Foyton API 严格遵循 OpenAI 标准协议规范。无论您使用 Python、Node.js、Go 还是原生 HTTP 请求，仅需修改 base_url 与 API Key，即可实现 0 成本无缝迁移与全系大模型中转。'
+        : 'Foyton API adheres strictly to the OpenAI specification standard. Seamlessly integrate Claude, DeepSeek, GPT-4o, and Gemini with zero migration friction.',
+      endpoints: [
+        { method: 'POST' as const, path: '/v1/chat/completions', desc: language === 'zh' ? '对话补全 / 智能体交互 / 流式输出' : 'Chat completions / Agent interaction / Streaming', color: 'purple' as const },
+        { method: 'GET' as const, path: '/v1/models', desc: language === 'zh' ? '获取当前可用模型列表及元信息' : 'List available models and metadata', color: 'blue' as const },
+        { method: 'POST' as const, path: '/v1/embeddings', desc: language === 'zh' ? '文本向量化生成 (知识库 / RAG)' : 'Text embeddings (Knowledge base / RAG)', color: 'emerald' as const },
+      ],
+    },
+    anthropic: {
+      baseUrl: 'https://fytapi.com/anthropic/v1',
+      headerValue: 'x-api-key: sk-foyton-...  +  anthropic-version: 2023-06-01',
+      description: language === 'zh'
+        ? 'Foyton API 完整兼容 Anthropic Messages API 协议。使用 Anthropic 官方 SDK 或原生 HTTP 请求，仅需修改 baseURL 与 API Key，即可通过 Foyton 网关调用 Claude 系列模型。'
+        : 'Foyton API is fully compatible with the Anthropic Messages API. Use the official Anthropic SDK or raw HTTP requests — just change the baseURL and API Key to route Claude models through Foyton.',
+      endpoints: [
+        { method: 'POST' as const, path: '/v1/messages', desc: language === 'zh' ? 'Claude 消息补全 / 流式输出' : 'Claude message completions / Streaming', color: 'purple' as const },
+        { method: 'GET' as const, path: '/v1/models', desc: language === 'zh' ? '获取当前可用模型列表及元信息' : 'List available models and metadata', color: 'blue' as const },
+        { method: 'POST' as const, path: '/v1/messages/count_tokens', desc: language === 'zh' ? 'Token 计数 (预估算费用)' : 'Token counting (estimate costs)', color: 'emerald' as const },
+      ],
+    },
+  };
+
+  const activeConfig = protocolConfig[activeProtocol];
 
   const copyText = (text: string, isUrl = false) => {
     navigator.clipboard.writeText(text);
@@ -46,13 +71,17 @@ export const DocsView: React.FC<DocsViewProps> = ({
     }
   };
 
+  const OPENAI_BASE = 'https://fytapi.com/v1';
+  const ANTHROPIC_BASE = 'https://fytapi.com/anthropic/v1';
+
+  // ─ OpenAI-protocol code snippets (existing) ──
   const codeSnippets = {
     python: `# 1. 安装依赖: pip install openai
 from openai import OpenAI
 
 # 2. 初始化客户端 (指定 Foyton API 统一基地址与你的 API Key)
 client = OpenAI(
-    base_url="${BASE_URL}",
+    base_url="${OPENAI_BASE}",
     api_key="${SAMPLE_API_KEY}"  # 替换为你的真实 Key
 )
 
@@ -74,7 +103,7 @@ import OpenAI from 'openai';
 
 // 2. 初始化客户端
 const openai = new OpenAI({
-  baseURL: '${BASE_URL}',
+  baseURL: '${OPENAI_BASE}',
   apiKey: '${SAMPLE_API_KEY}', // 替换为你的真实 Key
 });
 
@@ -94,7 +123,7 @@ async function main() {
 main();`,
 
     curl: `# cURL 快速终端测试
-curl ${BASE_URL}/chat/completions \\
+curl ${OPENAI_BASE}/chat/completions \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer ${SAMPLE_API_KEY}" \\
   -d '{
@@ -119,7 +148,7 @@ import (
 
 func main() {
 	config := openai.DefaultConfig("${SAMPLE_API_KEY}")
-	config.BaseURL = "${BASE_URL}" // 设置统一网关地址
+	config.BaseURL = "${OPENAI_BASE}" // 设置统一网关地址
 
 	client := openai.NewClientWithConfig(config)
 	resp, err := client.CreateChatCompletion(
@@ -144,6 +173,110 @@ func main() {
 }`
   };
 
+  // ─ Anthropic-protocol code snippets ──
+  const anthropicCodeSnippets = {
+    python: `# 1. 安装依赖: pip install anthropic
+import anthropic
+
+# 2. 初始化客户端 (指定 Foyton Anthropic 网关地址与你的 API Key)
+client = anthropic.Anthropic(
+    base_url="${activeConfig.baseUrl}",
+    api_key="${SAMPLE_API_KEY}"  # 替换为你的真实 Key
+)
+
+# 3. 创建消息补全 (支持 claude-sonnet-4-20250514, claude-opus-4-20250514 等)
+message = client.messages.create(
+    model="claude-sonnet-4-20250514",
+    max_tokens=1024,
+    messages=[
+        {"role": "user", "content": "请用简短三句话介绍分布式高可用网关的设计关键要素。"}
+    ]
+)
+
+print(message.content[0].text)`,
+
+    node: `// 1. 安装依赖: npm install @anthropic-ai/sdk
+import Anthropic from '@anthropic-ai/sdk';
+
+// 2. 初始化客户端
+const client = new Anthropic({
+  baseURL: '${activeConfig.baseUrl}',
+  apiKey: '${SAMPLE_API_KEY}', // 替换为你的真实 Key
+});
+
+async function main() {
+  // 3. 流式调用示例
+  const stream = client.messages.stream({
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: 1024,
+    messages: [{ role: 'user', content: '写一个带超时控制的 TypeScript fetch 函数' }],
+  });
+
+  stream.on('text', (text) => process.stdout.write(text));
+}
+
+main();`,
+
+    curl: `# cURL 快速终端测试 (Anthropic Messages API)
+curl ${activeConfig.baseUrl}/v1/messages \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: ${SAMPLE_API_KEY}" \\
+  -H "anthropic-version: 2023-06-01" \\
+  -d '{
+    "model": "claude-sonnet-4-20250514",
+    "max_tokens": 1024,
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello Foyton Anthropic API!"
+      }
+    ]
+  }'`,
+
+    go: `// Anthropic Messages API — 使用 net/http 原生请求
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+)
+
+func main() {
+	body := map[string]any{
+		"model":      "claude-sonnet-4-20250514",
+		"max_tokens": 1024,
+		"messages": []map[string]string{
+			{"role": "user", "content": "你好！"},
+		},
+	}
+	jsonBody, _ := json.Marshal(body)
+
+	req, _ := http.NewRequest("POST",
+		"${activeConfig.baseUrl}/v1/messages",
+		bytes.NewReader(jsonBody),
+	)
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("x-api-key", "${SAMPLE_API_KEY}")
+	req.Header.Set("anthropic-version", "2023-06-01")
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Printf("Request error: %v\\n", err)
+		return
+	}
+	defer resp.Body.Close()
+
+	result, _ := io.ReadAll(resp.Body)
+	fmt.Println(string(result))
+}`
+  };
+
+  // Active snippets based on protocol
+  const activeSnippets = activeProtocol === 'openai' ? codeSnippets : anthropicCodeSnippets;
+
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-in fade-in duration-300">
       {/* Top Header */}
@@ -157,10 +290,32 @@ func main() {
           {language === 'zh' ? '接入文档与开发者指引' : 'Integration Documentation'}
         </h1>
         <p className="text-sm sm:text-base text-neutral-500 max-w-3xl leading-relaxed">
-          {language === 'zh'
-            ? 'Foyton API 严格遵循 OpenAI 标准协议规范。无论您使用 Python、Node.js、Go 还是原生 HTTP 请求，仅需修改 base_url 与 API Key，即可实现 0 成本无缝迁移与全系大模型中转。'
-            : 'Foyton API adheres strictly to the OpenAI specification standard. Seamlessly integrate Claude, DeepSeek, GPT-4o, and Gemini with zero migration friction.'}
+          {activeConfig.description}
         </p>
+
+        {/* Protocol Toggle */}
+        <div className="mt-5 flex items-center gap-1.5 bg-neutral-100 p-1 rounded-xl w-fit">
+          <button
+            onClick={() => setActiveProtocol('openai')}
+            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              activeProtocol === 'openai'
+                ? 'bg-emerald-600 text-white shadow-xs'
+                : 'text-neutral-500 hover:text-neutral-900'
+            }`}
+          >
+            OpenAI 协议
+          </button>
+          <button
+            onClick={() => setActiveProtocol('anthropic')}
+            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              activeProtocol === 'anthropic'
+                ? 'bg-orange-500 text-white shadow-xs'
+                : 'text-neutral-500 hover:text-neutral-900'
+            }`}
+          >
+            Anthropic 协议
+          </button>
+        </div>
 
         {/* Global Connection Specs */}
         <div className="mt-6 pt-6 border-t border-neutral-100 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -171,7 +326,7 @@ func main() {
                 统一 API 网关地址 (Base URL)
               </span>
               <button
-                onClick={() => copyText(BASE_URL, true)}
+                onClick={() => copyText(activeConfig.baseUrl, true)}
                 className="text-xs text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1 cursor-pointer"
               >
                 {copiedUrl ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
@@ -179,7 +334,7 @@ func main() {
               </button>
             </div>
             <code className="text-xs font-mono font-bold text-neutral-900 bg-white px-3 py-2 rounded-xl border border-neutral-200 block truncate">
-              {BASE_URL}
+              {activeConfig.baseUrl}
             </code>
           </div>
 
@@ -198,7 +353,7 @@ func main() {
               </button>
             </div>
             <code className="text-xs font-mono font-bold text-neutral-900 bg-white px-3 py-2 rounded-xl border border-neutral-200 block truncate">
-              Authorization: Bearer sk-foyton-...
+              {activeConfig.headerValue}
             </code>
           </div>
         </div>
@@ -236,7 +391,7 @@ func main() {
             在现有项目或任何 AI 客户端软件（如 NextChat、CherryStudio、Dify）中将原地址替换为 Foyton 专线网关。
           </p>
           <span className="text-xs font-mono text-neutral-600 bg-neutral-50 px-2 py-1 rounded border border-neutral-200">
-            https://api.foyton.com/v1
+            {activeConfig.baseUrl}
           </span>
         </div>
 
@@ -289,11 +444,22 @@ func main() {
           </div>
         </div>
 
+        {/* Protocol badge */}
+        <div className="px-5 sm:px-6 pt-0">
+          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold border ${
+            activeProtocol === 'openai'
+              ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+              : 'bg-orange-50 text-orange-700 border-orange-200'
+          }`}>
+            {activeProtocol === 'openai' ? 'OpenAI' : 'Anthropic'} Protocol
+          </span>
+        </div>
+
         {/* Code Box */}
         <div className="relative bg-[#0f1218] p-5 sm:p-6 text-neutral-100 font-mono text-xs sm:text-[13px] overflow-x-auto leading-relaxed">
           <div className="absolute right-4 top-4 z-10">
             <button
-              onClick={() => copyText(codeSnippets[activeLang])}
+              onClick={() => copyText(activeSnippets[activeLang])}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs transition-colors border border-neutral-700 cursor-pointer shadow-sm"
             >
               {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -302,7 +468,7 @@ func main() {
           </div>
 
           <pre className="pt-6 sm:pt-2 whitespace-pre text-neutral-200">
-            {codeSnippets[activeLang]}
+            {activeSnippets[activeLang]}
           </pre>
         </div>
       </div>
@@ -313,21 +479,19 @@ func main() {
         <div className="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-xs">
           <h3 className="text-sm font-bold text-neutral-900 mb-3 flex items-center gap-2">
             <Layers className="w-4 h-4 text-purple-600" />
-            <span>核心兼容端点 (Endpoints)</span>
+            <span>{activeProtocol === 'openai' ? '核心兼容端点 (Endpoints)' : 'Anthropic 端点 (Endpoints)'}</span>
           </h3>
           <div className="space-y-2.5 text-xs">
-            <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100 flex items-center justify-between">
-              <span className="font-mono font-bold text-purple-700">POST /v1/chat/completions</span>
-              <span className="text-neutral-500">对话补全 / 智能体交互 / 流式输出</span>
-            </div>
-            <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100 flex items-center justify-between">
-              <span className="font-mono font-bold text-blue-700">GET /v1/models</span>
-              <span className="text-neutral-500">获取当前可用模型列表及元信息</span>
-            </div>
-            <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100 flex items-center justify-between">
-              <span className="font-mono font-bold text-emerald-700">POST /v1/embeddings</span>
-              <span className="text-neutral-500">文本向量化生成 (知识库 / RAG)</span>
-            </div>
+            {activeConfig.endpoints.map((ep, i) => (
+              <div key={i} className="p-3 bg-neutral-50 rounded-xl border border-neutral-100 flex items-center justify-between">
+                <span className={`font-mono font-bold ${
+                  ep.color === 'purple' ? 'text-purple-700' : ep.color === 'blue' ? 'text-blue-700' : 'text-emerald-700'
+                }`}>
+                  {ep.method} {ep.path}
+                </span>
+                <span className="text-neutral-500">{ep.desc}</span>
+              </div>
+            ))}
           </div>
         </div>
 

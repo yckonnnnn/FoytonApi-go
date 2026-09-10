@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { ConcentricRings } from './components/ConcentricRings';
 import { UfoEcosystemHub } from './components/UfoEcosystemHub';
@@ -14,21 +14,47 @@ import { AiRelayHub } from './components/AiRelayHub';
 import { ModelSquareView } from './components/ModelSquareView';
 import { DocsView } from './components/DocsView';
 import { ProjectsView } from './components/ProjectsView';
-import { EnterpriseFooter } from './components/EnterpriseFooter';
+import { ModelPricingSection } from './components/ModelPricingSection';
+import { ServiceJourneySection } from './components/ServiceJourneySection';
+import { ModelProviderSection } from './components/ModelProviderSection';
+import { TokenValueBannerSection } from './components/TokenValueBannerSection';
+import { SiteFooter } from './components/SiteFooter';
+import { LazyThreeWarpTunnel } from './components/LazyThreeWarpTunnel';
 import { AuthModal } from './components/AuthModal';
+import { LoginView } from './components/LoginView';
 import { ConsoleLayout } from './components/console/ConsoleLayout';
 import { ActiveView, ConsoleTab } from './types';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 
 function MainAppContent() {
   const [currentView, setCurrentView] = useState<ActiveView>('lost-original');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const { t } = useLanguage();
+  const { isAuthenticated } = useAuth();
+
+  // Scroll to top whenever the view changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  }, [currentView]);
+
+  // Handle buy button click with login gate — always goes to wallet recharge
+  const handleBuyCredits = () => {
+    if (!isAuthenticated) {
+      setCurrentView('login');
+    } else {
+      setCurrentView('console-wallet');
+    }
+  };
+
+  // 独立登录/注册页：无 Navbar / Footer / 隧道，全幅渲染
+  if (currentView === 'login') {
+    return <LoginView onNavigate={(view) => setCurrentView(view)} />;
+  }
 
   // If user is inside any console page, render the ConsoleLayout
   if (currentView.startsWith('console')) {
-    let initialTab: ConsoleTab = 'overview';
+    let initialTab: ConsoleTab = 'tokens';
     if (currentView === 'console-wallet') initialTab = 'wallet';
     else if (currentView === 'console-apikeys') initialTab = 'apikeys';
     else if (currentView === 'console-tokens') initialTab = 'tokens';
@@ -80,9 +106,10 @@ function MainAppContent() {
           </div>
 
           {/* Redesigned Architectural Advantages & Routing Section (Referencing Image 2) */}
-          <CoreAdvantages 
-            onNavigate={(view) => setCurrentView(view)} 
+          <CoreAdvantages
+            onNavigate={(view) => setCurrentView(view)}
             onOpenConsultation={() => setIsConsultationOpen(true)}
+            onBuy={handleBuyCredits}
           />
         </main>
       ) : currentView === 'models' ? (
@@ -119,11 +146,23 @@ function MainAppContent() {
         </main>
       )}
 
-      {/* Modern Multi-Column Enterprise Footer (Reference Image 2) */}
-      <EnterpriseFooter 
-        onNavigate={(view) => setCurrentView(view)}
-        onOpenConsultation={() => setIsConsultationOpen(true)}
-      />
+      {/* 首页专属：模型价格参考 / 从一次调用到一条清晰记录 / 模型生态厂商墙 / 充值转化横幅 */}
+      {currentView === 'lost-original' && (
+        <div className="relative z-20 w-full">
+          <ModelPricingSection onNavigate={(view) => setCurrentView(view)} />
+          <ServiceJourneySection onNavigate={(view) => setCurrentView(view)} />
+          <ModelProviderSection onNavigate={(view) => setCurrentView(view)} />
+          <TokenValueBannerSection onBuyCredits={handleBuyCredits} />
+        </div>
+      )}
+
+      {/* Modern Multi-Column Site Footer */}
+      <SiteFooter onNavigate={(view) => setCurrentView(view)} />
+
+      {/* 首页专属：页脚之下的宇宙隧道收尾（three.js 懒加载） */}
+      {currentView === 'lost-original' && (
+        <LazyThreeWarpTunnel onOpenConsultation={() => setIsConsultationOpen(true)} />
+      )}
 
       {/* 30-min Call / Contact & AI Onboarding Modal */}
       <ConsultationModal

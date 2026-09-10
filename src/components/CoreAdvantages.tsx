@@ -1,23 +1,62 @@
 import React from 'react';
 import { ActiveView } from '../types';
 import { useLanguage } from '../context/LanguageContext';
-import { 
-  Terminal, 
-  Layers, 
-  ArrowRight, 
-  ShieldCheck, 
-  Zap 
+import { ModelProviderIcon } from './ModelProviderIcon';
+import { BrainCircuit } from './BrainCircuit';
+import {
+  Terminal,
+  Layers,
+  ArrowRight,
+  ShieldCheck,
+  Coins,
+  Timer
 } from 'lucide-react';
-import { OptimalTunnelBanner } from './OptimalTunnelBanner';
+
+/** 智能路由中枢的 6 个环绕厂商节点（按 60° 均布，中心在 50/50）。 */
+const ROUTING_NODES = [
+  { key: 'OpenAI', name: 'OpenAI', angle: -90 },
+  { key: 'Anthropic', name: 'Anthropic', angle: -30 },
+  { key: 'Google', name: 'Google', angle: 30 },
+  { key: 'DeepSeek', name: 'DeepSeek', angle: 90 },
+  { key: 'Kimi', name: 'Kimi', angle: 150 },
+  { key: 'GLM', name: 'GLM', angle: 210 },
+].map((n) => {
+  const rad = (n.angle * Math.PI) / 180;
+  const radius = 36;
+  return {
+    ...n,
+    x: 50 + Math.cos(rad) * radius,
+    y: 50 + Math.sin(rad) * radius,
+  };
+});
+
+/** 右侧 2×2 规格卡片的统一外壳。 */
+const SpecCard: React.FC<{ icon: React.ElementType; label: string; value: string }> = ({
+  icon: Icon,
+  label,
+  value,
+}) => (
+  <div className="group bg-white rounded-2xl border border-neutral-200/90 hover:border-violet-200 p-4 sm:p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_rgba(99,102,241,0.08)] transition-all duration-200 flex flex-col gap-2.5 text-left">
+    <div className="w-9 h-9 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center transition-colors group-hover:bg-violet-100">
+      <Icon className="w-[18px] h-[18px]" strokeWidth={2.2} />
+    </div>
+    <div>
+      <div className="text-[13px] font-bold text-neutral-900">{label}</div>
+      <div className="text-[12.5px] text-neutral-500 leading-relaxed mt-1">{value}</div>
+    </div>
+  </div>
+);
 
 interface CoreAdvantagesProps {
   onNavigate: (view: ActiveView) => void;
   onOpenConsultation: () => void;
+  onBuy?: () => void;
 }
 
-export const CoreAdvantages: React.FC<CoreAdvantagesProps> = ({ 
-  onNavigate, 
-  onOpenConsultation 
+export const CoreAdvantages: React.FC<CoreAdvantagesProps> = ({
+  onNavigate,
+  onOpenConsultation,
+  onBuy
 }) => {
   const { language } = useLanguage();
 
@@ -168,7 +207,7 @@ export const CoreAdvantages: React.FC<CoreAdvantagesProps> = ({
       {/* ── TOP ACTION BAR: Seamless Fast Access to Console & Model Matrix ── */}
       <div className="mb-8 sm:mb-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
         <button
-          onClick={() => onNavigate('console-overview')}
+          onClick={() => onNavigate('docs')}
           id="btn-fast-console"
           className="group w-full sm:w-1/2 flex items-center justify-between px-5 py-3.5 bg-white/95 hover:bg-white rounded-2xl border border-neutral-200/90 hover:border-neutral-400 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)] transition-all duration-200 text-left cursor-pointer"
         >
@@ -179,9 +218,9 @@ export const CoreAdvantages: React.FC<CoreAdvantagesProps> = ({
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-[14px] font-bold text-neutral-900">
-                  {language === 'zh' ? '开发者控制台' : 'Developer Console'}
+                  {language === 'zh' ? '查看接入文档' : 'Integration Docs'}
                 </span>
-                <span className="text-[10px] font-semibold font-mono px-1.5 py-0.2 rounded bg-neutral-100 text-neutral-600">Console</span>
+                <span className="text-[10px] font-semibold font-mono px-1.5 py-0.2 rounded bg-neutral-100 text-neutral-600">Docs</span>
               </div>
               <p className="text-[11.5px] text-neutral-400 mt-0.5">
                 {language === 'zh' ? '即插即用 · 零迁移无缝兼容 OpenAI SDK' : 'Plug-and-play · Seamless OpenAI SDK match'}
@@ -303,179 +342,98 @@ export const CoreAdvantages: React.FC<CoreAdvantagesProps> = ({
 
       </div>
 
-      {/* ── SECTION 2: PRODUCTION-GRADE LLM ROUTING ARCHITECTURE (Strict Reference to Prototype) ── */}
-      <div 
+      {/* ── SECTION 2: PRODUCTION-GRADE LLM ROUTING ARCHITECTURE ── */}
+      <div
         id="production-routing-engine"
-        className="mt-12 sm:mt-16 bg-transparent text-left"
+        className="mt-12 sm:mt-16 text-left"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-          
-          {/* LEFT: Light Aesthetic Gradient Dot-Matrix Card with Center Neon Cloud & Lightning Bolt */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+          {/* LEFT: 智能路由中枢 —— 一个 API 接入多个云端（紫/靛蓝主题色） */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[420px] aspect-square rounded-[32px] sm:rounded-[38px] bg-white border border-neutral-200/80 shadow-[0_12px_44px_rgba(0,0,0,0.04)] p-6 sm:p-8 flex items-center justify-center overflow-hidden select-none">
-              
-              {/* Dot Matrix Pattern (Gradient Dots from Cyan to Warm Peach/Orange matching Prototype) */}
-              <svg 
-                className="absolute inset-0 w-full h-full pointer-events-none p-4" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  {/* Linear Gradient for Matrix Dots */}
-                  <linearGradient id="protoDotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.85" />
-                    <stop offset="50%" stopColor="#818cf8" stopOpacity="0.7" />
-                    <stop offset="100%" stopColor="#fb923c" stopOpacity="0.9" />
-                  </linearGradient>
-                  
-                  <pattern id="protoDotGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-                    <circle cx="12" cy="12" r="1.6" fill="url(#protoDotGrad)" />
-                  </pattern>
-                </defs>
+            <div className="relative w-full max-w-[440px] aspect-square rounded-[32px] sm:rounded-[38px] bg-gradient-to-br from-violet-50 via-white to-indigo-50 border border-violet-100/80 shadow-[0_12px_44px_rgba(99,102,241,0.10)] p-8 flex items-center justify-center overflow-hidden select-none">
 
-                <rect width="100%" height="100%" fill="url(#protoDotGrid)" />
-              </svg>
+              {/* 柔和径向光晕 */}
+              <div className="absolute w-60 h-60 rounded-full bg-gradient-to-tr from-violet-500/15 via-purple-500/15 to-indigo-500/15 blur-3xl pointer-events-none" />
 
-              {/* Ambient Soft Halo around the Center Badge */}
-              <div className="absolute w-44 h-44 rounded-full bg-gradient-to-tr from-cyan-400/20 via-purple-500/20 to-pink-500/20 blur-2xl pointer-events-none" />
+              {/* 核心光晕（压在球体之下，补回中心枢纽的强调感） */}
+              <div className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-violet-500/25 to-indigo-500/25 blur-xl pointer-events-none" />
 
-              {/* Center Cloud + Lightning Bolt Floating Badge (Exact Match to Prototype Image) */}
-              <div className="relative z-10 w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center transition-transform hover:scale-105 duration-300">
-                
-                {/* Scalloped Cloud Silhouette with Smooth Vibrant Gradient & Glow */}
-                <svg viewBox="0 0 120 120" className="w-full h-full drop-shadow-[0_12px_28px_rgba(236,72,153,0.35)]">
-                  <defs>
-                    <linearGradient id="cloudNeonGrad" x1="15%" y1="15%" x2="85%" y2="85%">
-                      <stop offset="0%" stopColor="#38bdf8" />
-                      <stop offset="45%" stopColor="#a855f7" />
-                      <stop offset="100%" stopColor="#f43f5e" />
-                    </linearGradient>
-                  </defs>
+              {/* 中枢路由核心（白色圆球 + 靛蓝大脑） */}
+              <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-white border border-violet-100 shadow-[0_10px_30px_rgba(79,70,229,0.16)] flex items-center justify-center">
+                <BrainCircuit className="relative w-[68px] h-[68px] sm:w-20 sm:h-20" />
+              </div>
 
-                  {/* Organic Multi-bubble Cloud Path */}
-                  <path 
-                    d="M60 16 
-                       C72 16 82 23 86 33 
-                       C96 34 104 42 104 53 
-                       C104 60 100 66 95 70 
-                       C98 76 96 84 90 90 
-                       C84 96 76 98 70 95 
-                       C66 100 60 104 53 104 
-                       C42 104 34 96 33 86 
-                       C23 82 16 72 16 60 
-                       C16 48 23 38 33 34 
-                       C34 23 42 16 53 16 
-                       Z" 
-                    fill="url(#cloudNeonGrad)" 
-                  />
-
-                  {/* Central Crisp Sharp Pure-White Lightning Bolt Icon */}
-                  <path 
-                    d="M63 32 L44 62 L59 62 L55 88 L76 56 L61 56 Z" 
-                    fill="#ffffff" 
-                    filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"
-                  />
-                </svg>
-
+              {/* 6 个厂商节点绕大脑公转（节点反向自转，logo 始终正立） */}
+              <div className="absolute inset-0 animate-orbit pointer-events-none">
+                {ROUTING_NODES.map((n) => (
+                  <div
+                    key={n.key}
+                    className="absolute"
+                    style={{ left: `${n.x}%`, top: `${n.y}%`, transform: 'translate(-50%, -50%)' }}
+                  >
+                    <div className="animate-orbit-counter">
+                      <div
+                        className="pointer-events-auto w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-neutral-200/80 shadow-[0_8px_24px_rgba(17,19,23,0.08)] flex items-center justify-center transition-transform hover:scale-110 duration-200"
+                        title={n.name}
+                      >
+                        <ModelProviderIcon provider={n.key} className="w-7 h-7 sm:w-8 sm:h-8" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
 
             </div>
           </div>
 
-          {/* RIGHT: Architecture Specs & Value Propositions (Strict Match to Prototype Image) */}
+          {/* RIGHT: 标题 + 副标题 + 2×2 规格卡片 + CTA */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            
-            {/* Title: 生产级 LLM 智能路由架构 */}
-            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-neutral-900 tracking-tight leading-tight">
+
+            {/* Eyebrow */}
+            <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] uppercase text-violet-600">
+              <span className="w-5 h-px bg-violet-400" />
+              {language === 'zh' ? '智能路由' : 'Smart Routing'}
+            </span>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-neutral-900 tracking-tight leading-tight mt-3">
               {language === 'zh' ? '生产级 LLM 智能路由架构' : 'Production-Grade LLM Routing Architecture'}
             </h2>
 
-            {/* Subtitle Description */}
             <p className="text-[14.5px] sm:text-[15.5px] text-neutral-600 mt-4 leading-relaxed font-normal max-w-2xl">
               {language === 'zh'
                 ? '专为 Agent、代码辅助与高并发系统打造。在保持 100% 原生接口协议兼容的同时，通过多云智能路由、实时健康探测与高频自动竞价，全面降低成本并提升可用性。'
                 : 'Built specifically for autonomous agents, code-completion, and high-concurrency systems. Maintains 100% native API compatibility while leveraging multi-cloud smart routing, real-time health probing, and automated dynamic bidding to minimize cost and maximize uptime.'}
             </p>
 
-            {/* Clean Specifications Table (4 Rows with subtle dashed dividers) */}
-            <div className="mt-8 space-y-4 max-w-2xl">
-              
-              {/* Row 1: 价格 */}
-              <div className="flex items-baseline pb-4 border-b border-dashed border-neutral-200/90 gap-4 sm:gap-8">
-                <span className="w-14 sm:w-16 text-sm text-neutral-400 font-normal shrink-0">
-                  {language === 'zh' ? '价格' : 'Price'}
-                </span>
-                <span className="text-[14.5px] sm:text-[15.5px] font-semibold text-neutral-900 tracking-tight">
-                  {language === 'zh' 
-                    ? '全网高频动态竞价，综合成本低至 1~3 折' 
-                    : 'Global real-time dynamic bidding, slashing baseline cost down to 70-90% off'}
-                </span>
-              </div>
-
-              {/* Row 2: 延迟 */}
-              <div className="flex items-baseline pb-4 border-b border-dashed border-neutral-200/90 gap-4 sm:gap-8">
-                <span className="w-14 sm:w-16 text-sm text-neutral-400 font-normal shrink-0">
-                  {language === 'zh' ? '延迟' : 'Latency'}
-                </span>
-                <span className="text-[14.5px] sm:text-[15.5px] font-semibold text-neutral-900 tracking-tight">
-                  {language === 'zh' 
-                    ? '全球优质边缘直连专线，首字延迟 < 380ms' 
-                    : 'Global premium direct edge-peering, TTFT under 380ms'}
-                </span>
-              </div>
-
-              {/* Row 3: 适用 */}
-              <div className="flex items-baseline pb-4 border-b border-dashed border-neutral-200/90 gap-4 sm:gap-8">
-                <span className="w-14 sm:w-16 text-sm text-neutral-400 font-normal shrink-0">
-                  {language === 'zh' ? '适用' : 'Use Cases'}
-                </span>
-                <span className="text-[14.5px] sm:text-[15.5px] font-semibold text-neutral-900 tracking-tight">
-                  {language === 'zh' 
-                    ? '高并发生产环境、Agent 多步调用、长文本高频推理' 
-                    : 'High-throughput production, multi-step agent reasoning, large-context inference'}
-                </span>
-              </div>
-
-              {/* Row 4: 保障 */}
-              <div className="flex items-baseline pb-4 border-b border-dashed border-neutral-200/90 gap-4 sm:gap-8">
-                <span className="w-14 sm:w-16 text-sm text-neutral-400 font-normal shrink-0">
-                  {language === 'zh' ? '保障' : 'SLA'}
-                </span>
-                <span className="text-[14.5px] sm:text-[15.5px] font-semibold text-neutral-900 tracking-tight">
-                  {language === 'zh' 
-                    ? '99.99% 企业级 SLA，多云热备秒级无感容灾切换' 
-                    : '99.99% enterprise SLA with sub-second zero-downtime multi-cloud hot-failover'}
-                </span>
-              </div>
-
-            </div>
-
-            {/* Action Bar: Test In Console & Dedicated Architect Link */}
-            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
-              <button
-                type="button"
-                onClick={() => onNavigate('ai-hub')}
-                className="px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 active:scale-95 text-white text-[13.5px] font-semibold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
-              >
-                <Terminal className="w-4 h-4" />
-                <span>{language === 'zh' ? '立即在线接入测试' : 'Live Test Bench'}</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={onOpenConsultation}
-                className="px-4 py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200/80 active:scale-95 text-neutral-800 text-[13.5px] font-medium transition-all flex items-center gap-1.5 cursor-pointer"
-              >
-                <span>{language === 'zh' ? '预约企业架构师咨询' : 'Book Architect Consultation'}</span>
-              </button>
+            {/* 2×2 规格卡片 */}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-2xl">
+              <SpecCard
+                icon={Coins}
+                label={language === 'zh' ? '价格' : 'Price'}
+                value={language === 'zh' ? '全网高频动态竞价，综合成本低至 1~3 折' : 'Global real-time dynamic bidding, slashing baseline cost down to 70-90% off'}
+              />
+              <SpecCard
+                icon={Timer}
+                label={language === 'zh' ? '延迟' : 'Latency'}
+                value={language === 'zh' ? '全球优质边缘直连专线，首字延迟 < 380ms' : 'Global premium direct edge-peering, TTFT under 380ms'}
+              />
+              <SpecCard
+                icon={Layers}
+                label={language === 'zh' ? '适用' : 'Use Cases'}
+                value={language === 'zh' ? '高并发生产环境、Agent 多步调用、长文本高频推理' : 'High-throughput production, multi-step agent reasoning, large-context inference'}
+              />
+              <SpecCard
+                icon={ShieldCheck}
+                label={language === 'zh' ? '保障' : 'SLA'}
+                value={language === 'zh' ? '99.99% 企业级 SLA，多云热备秒级无感容灾切换' : '99.99% enterprise SLA with sub-second zero-downtime multi-cloud hot-failover'}
+              />
             </div>
 
           </div>
 
         </div>
       </div>
-
-      {/* ── SECTION 3: OPTIMAL HIGHWAY WARP TUNNEL BANNER (Reference Image 2) ── */}
-      <OptimalTunnelBanner onOpenConsultation={onOpenConsultation} />
 
     </section>
   );

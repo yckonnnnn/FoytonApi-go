@@ -8,7 +8,7 @@ interface AuthContextType {
   authModalMode: 'login' | 'register';
   openAuthModal: (mode?: 'login' | 'register') => void;
   closeAuthModal: () => void;
-  login: (email: string, name?: string) => void;
+  login: (username: string, password: string) => { success: boolean; error?: string };
   register: (email: string, name?: string, inviteCode?: string) => void;
   logout: () => void;
   apiKeys: ApiKeyItem[];
@@ -20,10 +20,10 @@ interface AuthContextType {
 }
 
 const DEFAULT_USER: UserProfile = {
-  id: 'usr_foyton_8819',
-  name: 'Alex Chen',
-  email: 'alex.chen@innovatech.io',
-  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+  id: 'usr_foyton_admin',
+  name: 'admin',
+  email: 'admin@foyton.io',
+  avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
   balance: 382.40,
   totalRecharged: 1200.00,
   totalSpent: 817.60,
@@ -31,6 +31,10 @@ const DEFAULT_USER: UserProfile = {
   plan: 'Pro',
   createdAt: '2025-11-12',
 };
+
+// Demo credentials
+const DEMO_USERNAME = 'admin';
+const DEMO_PASSWORD = 'admin123';
 
 const INITIAL_API_KEYS: ApiKeyItem[] = [
   {
@@ -239,21 +243,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsAuthModalOpen(false);
   };
 
-  const login = (email: string, name?: string) => {
-    const newUser: UserProfile = {
-      id: `usr_${Math.random().toString(36).substring(2, 9)}`,
-      name: name || email.split('@')[0] || 'Foyton Developer',
-      email,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
-      balance: 100.0,
-      totalRecharged: 100.0,
-      totalSpent: 0.0,
-      role: 'developer',
-      plan: 'Pro',
-      createdAt: new Date().toISOString().split('T')[0],
-    };
-    setUser(newUser);
+  const login = (username: string, password: string): { success: boolean; error?: string } => {
+    // Validate demo credentials
+    if (username !== DEMO_USERNAME || password !== DEMO_PASSWORD) {
+      return { success: false, error: username ? '用户名或密码错误' : '请输入用户名和密码' };
+    }
+    setUser(DEFAULT_USER);
     closeAuthModal();
+    return { success: true };
   };
 
   const register = (email: string, name?: string, inviteCode?: string) => {

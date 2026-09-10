@@ -37,7 +37,7 @@ export const ConsoleOverview: React.FC<ConsoleOverviewProps> = ({ onSelectTab })
   const activeKey = apiKeys.find(k => k.status === 'active') || apiKeys[0];
 
   const handleCopyBaseUrl = () => {
-    navigator.clipboard.writeText('https://api.fytapi.com/v1');
+    navigator.clipboard.writeText('https://fytapi.com/v1');
     setCopiedKey(true);
     setTimeout(() => setCopiedKey(false), 2000);
   };
@@ -47,7 +47,7 @@ export const ConsoleOverview: React.FC<ConsoleOverviewProps> = ({ onSelectTab })
 # 只需要配置两行，即可无缝兼容任意 OpenAI 生态客户端
 client = OpenAI(
     api_key="${activeKey?.rawKey || 'sk-fyt-xxxxxxxxxxxxxxxx'}",
-    base_url="https://api.fytapi.com/v1"
+    base_url="https://fytapi.com/v1"
 )
 
 response = client.chat.completions.create(
@@ -60,7 +60,7 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)`;
 
-  const curlSnippet = `curl https://api.fytapi.com/v1/chat/completions \\
+  const curlSnippet = `curl https://fytapi.com/v1/chat/completions \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer ${activeKey?.rawKey || 'sk-fyt-xxxxxxxxxxxxxxxx'}" \\
   -d '{
@@ -73,7 +73,7 @@ print(response.choices[0].message.content)`;
 
 const openai = new OpenAI({
   apiKey: "${activeKey?.rawKey || 'sk-fyt-xxxxxxxxxxxxxxxx'}",
-  baseURL: "https://api.fytapi.com/v1",
+  baseURL: "https://fytapi.com/v1",
 });
 
 async function main() {
@@ -299,7 +299,7 @@ main();`;
           <div className="flex items-center gap-2 p-1.5 pl-3 rounded-xl bg-neutral-50 border border-neutral-200/80">
             <span className="text-[11px] text-neutral-400 font-mono font-medium">Base URL:</span>
             <code className="text-xs font-mono font-bold text-neutral-800">
-              https://api.fytapi.com/v1
+              https://fytapi.com/v1
             </code>
             <button
               type="button"

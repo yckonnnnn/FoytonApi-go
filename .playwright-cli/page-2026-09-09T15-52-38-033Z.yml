@@ -1,0 +1,158 @@
+- generic [ref=e986]:
+  - complementary [ref=e987]:
+    - generic [ref=e988]:
+      - generic [ref=e989]:
+        - generic "返回官网首页" [ref=e990] [cursor=pointer]:
+          - generic [ref=e1002]:
+            - generic [ref=e1003]:
+              - generic [ref=e1004]: Foyton
+              - generic [ref=e1005]: Console
+            - generic [ref=e1006]: 企业级智能中转网关
+        - button "返回官网首页" [ref=e1007] [cursor=pointer]
+      - generic [ref=e1014] [cursor=pointer]:
+        - generic [ref=e1015]: 生产级生产集群 (Prod)
+        - generic [ref=e1016]: fytapi.com
+      - generic [ref=e1019]:
+        - generic [ref=e1020]:
+          - generic [ref=e1021]: 总览与监控
+          - button "控制台概览" [ref=e1022] [cursor=pointer]
+          - button "Token 用量" [ref=e1031] [cursor=pointer]
+        - generic [ref=e1037]:
+          - generic [ref=e1038]: 开发与接入
+          - button "API 密钥管理" [ref=e1039] [cursor=pointer]
+        - generic [ref=e1047]:
+          - generic [ref=e1048]: 财务与计费
+          - button "钱包充值 返 15%" [ref=e1049] [cursor=pointer]:
+            - generic [ref=e1050]: 钱包充值
+            - generic [ref=e1056]: 返 15%
+          - button "消费明细" [ref=e1057] [cursor=pointer]
+    - generic [ref=e1065]:
+      - generic [ref=e1066]:
+        - img "admin" [ref=e1067]
+        - generic [ref=e1068]:
+          - generic [ref=e1069]: admin
+          - generic [ref=e1070]: admin@foyton.io
+      - button "退出当前登录" [ref=e1071] [cursor=pointer]
+  - generic [ref=e1075]:
+    - banner [ref=e1076]:
+      - generic [ref=e1077]:
+        - button "Foyton Cloud" [ref=e1078] [cursor=pointer]
+        - generic [ref=e1081]: Console
+        - generic [ref=e1084]: 控制台概览
+      - generic [ref=e1085]:
+        - 'button "账户余额: ¥382.40 充值" [ref=e1086] [cursor=pointer]':
+          - generic [ref=e1090]: "账户余额:"
+          - generic [ref=e1091]: ¥382.40
+          - generic [ref=e1092]: 充值
+        - button "中" [ref=e1093] [cursor=pointer]
+        - button "返回官网" [ref=e1098] [cursor=pointer]
+    - main [ref=e1102]:
+      - generic [ref=e1103]:
+        - generic [ref=e1105]:
+          - generic [ref=e1106]:
+            - generic [ref=e1107]:
+              - generic [ref=e1108]: 全球专线集群：运行正常 (99.99% SLA)
+              - generic [ref=e1110]: Pro 开发者工作空间
+            - heading "欢迎回来，admin" [level=1] [ref=e1112]
+            - paragraph [ref=e1113]: 您当前连接至 Foyton 边缘动态专线路由，上游直连 OpenAI、Anthropic、DeepSeek 与 Google，已享受最低 1 折企业分流通路。
+          - generic [ref=e1114]:
+            - button "快速充值余额" [ref=e1115] [cursor=pointer]
+            - button "管理 API 密钥" [ref=e1120] [cursor=pointer]
+        - generic [ref=e1126]:
+          - generic [ref=e1127]:
+            - generic [ref=e1128]: 钱包可用余额
+            - generic [ref=e1134]:
+              - generic [ref=e1135]: ¥
+              - generic [ref=e1136]: "382.40"
+            - generic [ref=e1137]:
+              - generic [ref=e1138]: 已累计充值 ¥1,200
+              - button "去充值" [ref=e1139] [cursor=pointer]
+          - generic [ref=e1144]:
+            - generic [ref=e1145]: 今日消耗 Tokens
+            - generic [ref=e1150]:
+              - generic [ref=e1151]: "47.9"
+              - generic [ref=e1152]: k
+            - generic [ref=e1153]:
+              - generic [ref=e1154]: +14.2% 较昨日
+              - button "图表分析" [ref=e1158] [cursor=pointer]
+          - generic [ref=e1163]:
+            - generic [ref=e1164]: 今日调用总次数
+            - generic [ref=e1169]:
+              - generic [ref=e1170]: 1,286
+              - generic [ref=e1171]: 次
+            - generic [ref=e1172]:
+              - generic [ref=e1173]: 调用成功率 100.0%
+              - button "调用流水" [ref=e1174] [cursor=pointer]
+          - generic [ref=e1179]:
+            - generic [ref=e1180]: 平均首字延迟 (TTFT)
+            - generic [ref=e1186]:
+              - generic [ref=e1187]: "85"
+              - generic [ref=e1188]: ms
+            - generic [ref=e1189]:
+              - generic [ref=e1190]: 全球 26 个边缘节点
+              - generic [ref=e1191]: 极速专线
+        - generic [ref=e1192]:
+          - generic [ref=e1193]:
+            - generic [ref=e1194]:
+              - heading "30 秒极速接入 Foyton API" [level=3] [ref=e1197]
+              - paragraph [ref=e1198]: 原生兼容标准 OpenAI SDK，无需重写现有业务逻辑，仅需配置 Base URL 即可即时切换多模型调度。
+            - generic [ref=e1199]:
+              - generic [ref=e1200]: "Base URL:"
+              - code [ref=e1201]: https://fytapi.com/v1
+              - button "复制 Base URL" [ref=e1202] [cursor=pointer]
+          - generic [ref=e1206]:
+            - generic [ref=e1207]:
+              - generic [ref=e1208]:
+                - button "Python (OpenAI)" [ref=e1209] [cursor=pointer]
+                - button "cURL 终端测试" [ref=e1210] [cursor=pointer]
+                - button "Node.js / TS" [ref=e1211] [cursor=pointer]
+              - button "复制代码" [ref=e1212] [cursor=pointer]
+            - code [ref=e1218]: "from openai import OpenAI # 只需要配置两行，即可无缝兼容任意 OpenAI 生态客户端 client = OpenAI( api_key=\"sk-fyt-9a8bc47e912301f28b49e210aa9172fe\", base_url=\"https://fytapi.com/v1\" ) response = client.chat.completions.create( model=\"claude-3-5-sonnet-20241022\", # 也支持 gpt-4o, deepseek-chat 等 messages=[ {\"role\": \"user\", \"content\": \"你好！请帮我分析智能网关的优势\"} ], temperature=0.7 ) print(response.choices[0].message.content)"
+        - generic [ref=e1219]:
+          - generic [ref=e1220]:
+            - generic [ref=e1221]:
+              - heading "主流模型上游专线健康状态" [level=4] [ref=e1226]
+              - generic [ref=e1227]: 实时探测
+            - generic [ref=e1228]:
+              - generic [ref=e1229]:
+                - generic [ref=e1230]:
+                  - generic [ref=e1231]: Claude 3.5 Sonnet
+                  - generic [ref=e1232]: Anthropic Direct
+                - generic [ref=e1234]:
+                  - generic [ref=e1235]: 120ms
+                  - generic [ref=e1236]: SLA 99.98%
+              - generic [ref=e1238]:
+                - generic [ref=e1239]:
+                  - generic [ref=e1240]: GPT-4o (Omni)
+                  - generic [ref=e1241]: OpenAI Enterprise
+                - generic [ref=e1243]:
+                  - generic [ref=e1244]: 95ms
+                  - generic [ref=e1245]: SLA 99.99%
+              - generic [ref=e1247]:
+                - generic [ref=e1248]:
+                  - generic [ref=e1249]: DeepSeek Chat V3
+                  - generic [ref=e1250]: DeepSeek Cluster
+                - generic [ref=e1252]:
+                  - generic [ref=e1253]: 65ms
+                  - generic [ref=e1254]: SLA 100.0%
+              - generic [ref=e1256]:
+                - generic [ref=e1257]:
+                  - generic [ref=e1258]: Gemini 1.5 Pro
+                  - generic [ref=e1259]: Google Cloud Asia
+                - generic [ref=e1261]:
+                  - generic [ref=e1262]: 110ms
+                  - generic [ref=e1263]: SLA 99.95%
+          - generic [ref=e1265]:
+            - generic [ref=e1266]:
+              - generic [ref=e1267]:
+                - heading "API 凭据与安全风控" [level=4] [ref=e1272]
+                - generic [ref=e1273]: 双因子保护开启
+              - generic [ref=e1274]:
+                - generic [ref=e1275]: 当前生效主密钥：
+                - generic [ref=e1279]:
+                  - generic [ref=e1280]: sk-fyt-9a8b****************************72fe
+                  - generic [ref=e1281]: Production Agent Gateway
+                - paragraph [ref=e1282]: 该密钥支持所有模型一键调用。为保证生产安全，建议在不同服务中按需为子项目创建独立 Key 并设置月度额度限制。
+            - generic [ref=e1283]:
+              - generic [ref=e1284]: 已配置 1 个活动密钥
+              - button "进入 API 密钥中心" [ref=e1285] [cursor=pointer]

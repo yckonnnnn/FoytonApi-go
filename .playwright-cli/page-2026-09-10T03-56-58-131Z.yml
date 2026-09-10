@@ -1,0 +1,385 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic "Foyton API - 企业级大模型与智能体中转平台" [ref=e6] [cursor=pointer]:
+        - generic [ref=e18]:
+          - generic [ref=e19]: Foyton
+          - generic [ref=e20]: API
+      - navigation [ref=e21]:
+        - button "主页" [ref=e22] [cursor=pointer]
+        - button "模型广场" [active] [ref=e23] [cursor=pointer]
+        - button "控制台" [ref=e24] [cursor=pointer]
+        - button "接入文档" [ref=e26] [cursor=pointer]
+      - generic [ref=e27]:
+        - button "中 / EN" [ref=e28] [cursor=pointer]:
+          - generic [ref=e32]:
+            - generic [ref=e33]: 中
+            - generic [ref=e34]: /
+            - generic [ref=e35]: EN
+        - button "admin admin" [ref=e37] [cursor=pointer]:
+          - img "admin" [ref=e38]
+          - generic [ref=e39]: admin
+  - main [ref=e42]:
+    - generic [ref=e982]:
+      - generic [ref=e983]:
+        - generic [ref=e984]:
+          - generic [ref=e985]: FOYTON 模型目录
+          - heading "选模型，先看清价格与稳定性" [level=1] [ref=e988]
+          - paragraph [ref=e989]: 统一查看主流模型的上下文、输入输出价格和线路可用率。价格透明，模型 ID 可直接复制使用。
+        - generic [ref=e990]:
+          - button "咨询线路方案" [ref=e991]
+          - button "接入文档" [ref=e995]
+      - region "模型筛选" [ref=e1002]:
+        - generic [ref=e1003]:
+          - generic [ref=e1004]:
+            - button "精选" [pressed] [ref=e1005]
+            - button "OpenAI" [ref=e1010]
+            - button "Anthropic" [ref=e1014]
+            - button "Google" [ref=e1018]
+            - button "DeepSeek" [ref=e1022]
+            - button "通义千问" [ref=e1026]
+            - button "Kimi" [ref=e1030]
+            - button "智谱" [ref=e1035]
+          - generic [ref=e1048]:
+            - generic [ref=e1049]: 搜索模型
+            - searchbox "搜索模型" [ref=e1050]
+        - generic [ref=e1051]:
+          - generic [ref=e1052]: 能力
+          - button "全部类型" [ref=e1053]
+          - button "深度推理" [ref=e1054]
+          - button "旗舰通用" [ref=e1055]
+          - button "极速轻量" [ref=e1056]
+          - button "视觉 / 长上下文" [ref=e1057]
+          - generic [ref=e1058]: 10 个结果
+      - generic [ref=e1059]:
+        - generic [ref=e1060]:
+          - generic [ref=e1061]: 模型
+          - generic [ref=e1062]: 上下文
+          - generic [ref=e1063]: 输入价格
+          - generic [ref=e1064]: 输出价格
+          - generic [ref=e1065]: 线路可用率
+          - generic [ref=e1066]: 接入
+        - generic [ref=e1067]:
+          - article [ref=e1068]:
+            - generic [ref=e1074]:
+              - generic [ref=e1075]:
+                - heading "GPT-6 Astra" [level=2] [ref=e1076]
+                - generic [ref=e1077]: Astra
+              - generic [ref=e1078]:
+                - code [ref=e1079]: gpt-6-astra
+                - button "复制模型 ID" [ref=e1080]
+              - paragraph [ref=e1084]: 新一代全模态旗舰模型，面向复杂智能体任务、代码工程与实时协作。
+              - generic [ref=e1085]:
+                - generic [ref=e1086]: "#旗舰通用"
+                - generic [ref=e1087]: "#智能体"
+                - generic [ref=e1088]: "#全模态"
+            - generic [ref=e1089]: 1M
+            - generic [ref=e1092]:
+              - strong [ref=e1093]: ¥0.008
+              - text: / 1K
+              - generic [ref=e1094]: 按实际 Token 计费
+            - generic [ref=e1099]:
+              - strong [ref=e1100]: ¥0.048
+              - text: / 1K
+              - generic [ref=e1101]: 典型延迟 108ms
+            - generic [ref=e1104]:
+              - generic [ref=e1106]:
+                - strong [ref=e1107]: 99.96%
+                - generic "运行正常" [ref=e1108]
+              - tooltip "数值表示近 24 小时请求成功率 色柱为逐时成功率，当前平均 99.96% >95% 正常 90–95% 波动 70–90% 异常 <70% 受损":
+                - generic: 数值表示近 24 小时请求成功率
+                - generic:
+                  - paragraph: 色柱为逐时成功率，当前平均 99.96%
+                  - generic:
+                    - generic: ">95% 正常"
+                    - generic: 90–95% 波动
+                    - generic: 70–90% 异常
+                    - generic: <70% 受损
+            - button "接入 GPT-6 Astra" [ref=e1136]
+          - article [ref=e1139]:
+            - generic [ref=e1145]:
+              - heading "GPT-5.6 Sol" [level=2] [ref=e1147]
+              - generic [ref=e1148]:
+                - code [ref=e1149]: gpt-5.6-sol
+                - button "复制模型 ID" [ref=e1150]
+              - paragraph [ref=e1154]: 兼顾速度、成本与工具调用能力，适合高频日常任务和批量处理。
+              - generic [ref=e1155]:
+                - generic [ref=e1156]: "#快速响应"
+                - generic [ref=e1157]: "#工具调用"
+                - generic [ref=e1158]: "#高吞吐"
+            - generic [ref=e1159]: 1M
+            - generic [ref=e1162]:
+              - strong [ref=e1163]: ¥0.0034
+              - text: / 1K
+              - generic [ref=e1164]: 按实际 Token 计费
+            - generic [ref=e1169]:
+              - strong [ref=e1170]: ¥0.020
+              - text: / 1K
+              - generic [ref=e1171]: 典型延迟 82ms
+            - generic [ref=e1176]:
+              - strong [ref=e1177]: 99.92%
+              - generic "运行正常" [ref=e1178]
+            - button "接入 GPT-5.6 Sol" [ref=e1206]
+          - article [ref=e1209]:
+            - generic [ref=e1215]:
+              - generic [ref=e1216]:
+                - heading "Claude Fable 5.1" [level=2] [ref=e1217]
+                - generic [ref=e1218]: Fable 5.1
+              - generic [ref=e1219]:
+                - code [ref=e1220]: claude-fable-5.1
+                - button "复制模型 ID" [ref=e1221]
+              - paragraph [ref=e1225]: 适合长链路智能体、复杂代码改造、文档分析与严谨写作。
+              - generic [ref=e1226]:
+                - generic [ref=e1227]: "#深度推理"
+                - generic [ref=e1228]: "#代码工程"
+                - generic [ref=e1229]: "#长上下文"
+            - generic [ref=e1230]: 1M
+            - generic [ref=e1233]:
+              - strong [ref=e1234]: ¥0.017
+              - text: / 1K
+              - generic [ref=e1235]: 按实际 Token 计费
+            - generic [ref=e1240]:
+              - strong [ref=e1241]: ¥0.086
+              - text: / 1K
+              - generic [ref=e1242]: 典型延迟 136ms
+            - generic [ref=e1247]:
+              - strong [ref=e1248]: 99.91%
+              - generic "运行正常" [ref=e1249]
+            - button "接入 Claude Fable 5.1" [ref=e1277]
+          - article [ref=e1280]:
+            - generic [ref=e1286]:
+              - generic [ref=e1287]:
+                - heading "Claude Opus 5" [level=2] [ref=e1288]
+                - generic [ref=e1289]: Opus 5
+              - generic [ref=e1290]:
+                - code [ref=e1291]: claude-opus-5
+                - button "复制模型 ID" [ref=e1292]
+              - paragraph [ref=e1296]: 面向高难度研究、软件架构和多阶段任务规划的旗舰模型。
+              - generic [ref=e1297]:
+                - generic [ref=e1298]: "#复杂规划"
+                - generic [ref=e1299]: "#研究分析"
+                - generic [ref=e1300]: "#代码架构"
+            - generic [ref=e1301]: 1M
+            - generic [ref=e1304]:
+              - strong [ref=e1305]: ¥0.0072
+              - text: / 1K
+              - generic [ref=e1306]: 按实际 Token 计费
+            - generic [ref=e1311]:
+              - strong [ref=e1312]: ¥0.036
+              - text: / 1K
+              - generic [ref=e1313]: 典型延迟 154ms
+            - generic [ref=e1318]:
+              - strong [ref=e1319]: 99.88%
+              - generic "运行正常" [ref=e1320]
+            - button "接入 Claude Opus 5" [ref=e1348]
+          - article [ref=e1351]:
+            - generic [ref=e1357]:
+              - generic [ref=e1358]:
+                - heading "DeepSeek V4 Pro" [level=2] [ref=e1359]
+                - generic [ref=e1360]: V4 Pro
+              - generic [ref=e1361]:
+                - code [ref=e1362]: deepseek-v4-pro
+                - button "复制模型 ID" [ref=e1363]
+              - paragraph [ref=e1367]: 强化复杂推理、数学分析与代码规划，适合高要求生产任务。
+              - generic [ref=e1368]:
+                - generic [ref=e1369]: "#深度思考"
+                - generic [ref=e1370]: "#数学推导"
+                - generic [ref=e1371]: "#代码规划"
+            - generic [ref=e1372]: 1M
+            - generic [ref=e1375]:
+              - strong [ref=e1376]: ¥0.004
+              - text: / 1K
+              - generic [ref=e1377]: 按实际 Token 计费
+            - generic [ref=e1382]:
+              - strong [ref=e1383]: ¥0.014
+              - text: / 1K
+              - generic [ref=e1384]: 典型延迟 112ms
+            - generic [ref=e1389]:
+              - strong [ref=e1390]: 99.87%
+              - generic "运行正常" [ref=e1391]
+            - button "接入 DeepSeek V4 Pro" [ref=e1419]
+          - article [ref=e1422]:
+            - generic [ref=e1428]:
+              - generic [ref=e1429]:
+                - heading "DeepSeek V4 Flash" [level=2] [ref=e1430]
+                - generic [ref=e1431]: V4 Flash
+              - generic [ref=e1432]:
+                - code [ref=e1433]: deepseek-v4-flash
+                - button "复制模型 ID" [ref=e1434]
+              - paragraph [ref=e1438]: 低延迟高吞吐版本，适合客服、内容处理与高并发自动化流程。
+              - generic [ref=e1439]:
+                - generic [ref=e1440]: "#极速吞吐"
+                - generic [ref=e1441]: "#成本友好"
+                - generic [ref=e1442]: "#高并发"
+            - generic [ref=e1443]: 1M
+            - generic [ref=e1446]:
+              - strong [ref=e1447]: ¥0.002
+              - text: / 1K
+              - generic [ref=e1448]: 按实际 Token 计费
+            - generic [ref=e1453]:
+              - strong [ref=e1454]: ¥0.006
+              - text: / 1K
+              - generic [ref=e1455]: 典型延迟 61ms
+            - generic [ref=e1460]:
+              - strong [ref=e1461]: 99.94%
+              - generic "运行正常" [ref=e1462]
+            - button "接入 DeepSeek V4 Flash" [ref=e1490]
+          - article [ref=e1493]:
+            - generic [ref=e1499]:
+              - generic [ref=e1500]:
+                - heading "Qwen 3.8 Max" [level=2] [ref=e1501]
+                - generic [ref=e1502]: 3.8 Max
+              - generic [ref=e1503]:
+                - code [ref=e1504]: qwen-3.8-max
+                - button "复制模型 ID" [ref=e1505]
+              - paragraph [ref=e1509]: 面向中文知识、企业问答、编程与多语言内容生产的旗舰模型。
+              - generic [ref=e1510]:
+                - generic [ref=e1511]: "#中文理解"
+                - generic [ref=e1512]: "#企业知识"
+                - generic [ref=e1513]: "#多语言"
+            - generic [ref=e1514]: 1M
+            - generic [ref=e1517]:
+              - strong [ref=e1518]: ¥0.006
+              - text: / 1K
+              - generic [ref=e1519]: 按实际 Token 计费
+            - generic [ref=e1524]:
+              - strong [ref=e1525]: ¥0.024
+              - text: / 1K
+              - generic [ref=e1526]: 典型延迟 96ms
+            - generic [ref=e1531]:
+              - strong [ref=e1532]: 99.86%
+              - generic "运行正常" [ref=e1533]
+            - button "接入 Qwen 3.8 Max" [ref=e1561]
+          - article [ref=e1564]:
+            - generic [ref=e1571]:
+              - generic [ref=e1572]:
+                - heading "Kimi K3" [level=2] [ref=e1573]
+                - generic [ref=e1574]: K3
+              - generic [ref=e1575]:
+                - code [ref=e1576]: kimi-k3
+                - button "复制模型 ID" [ref=e1577]
+              - paragraph [ref=e1581]: 擅长超长文档、联网研究与复杂任务拆解，适合知识密集型场景。
+              - generic [ref=e1582]:
+                - generic [ref=e1583]: "#超长上下文"
+                - generic [ref=e1584]: "#研究分析"
+                - generic [ref=e1585]: "#任务规划"
+            - generic [ref=e1586]: 1M
+            - generic [ref=e1589]:
+              - strong [ref=e1590]: ¥0.016
+              - text: / 1K
+              - generic [ref=e1591]: 按实际 Token 计费
+            - generic [ref=e1596]:
+              - strong [ref=e1597]: ¥0.081
+              - text: / 1K
+              - generic [ref=e1598]: 典型延迟 128ms
+            - generic [ref=e1603]:
+              - strong [ref=e1604]: 99.82%
+              - generic "运行正常" [ref=e1605]
+            - button "接入 Kimi K3" [ref=e1633]
+          - article [ref=e1636]:
+            - generic [ref=e1651]:
+              - generic [ref=e1652]:
+                - heading "GLM-5.3 Flash" [level=2] [ref=e1653]
+                - generic [ref=e1654]: 5.3 Flash
+              - generic [ref=e1655]:
+                - code [ref=e1656]: glm-5.3-flash
+                - button "复制模型 ID" [ref=e1657]
+              - paragraph [ref=e1661]: 智谱轻量高速模型，适合工具调用、批量文本任务和实时对话。
+              - generic [ref=e1662]:
+                - generic [ref=e1663]: "#智谱"
+                - generic [ref=e1664]: "#低延迟"
+                - generic [ref=e1665]: "#工具调用"
+            - generic [ref=e1666]: 1M
+            - generic [ref=e1669]:
+              - strong [ref=e1670]: ¥0.0004
+              - text: / 1K
+              - generic [ref=e1671]: 按实际 Token 计费
+            - generic [ref=e1676]:
+              - strong [ref=e1677]: ¥0.0015
+              - text: / 1K
+              - generic [ref=e1678]: 典型延迟 58ms
+            - generic [ref=e1683]:
+              - strong [ref=e1684]: 99.79%
+              - generic "运行正常" [ref=e1685]
+            - button "接入 GLM-5.3 Flash" [ref=e1713]
+          - article [ref=e1716]:
+            - generic [ref=e1722]:
+              - generic [ref=e1723]:
+                - heading "Gemini 3 Pro" [level=2] [ref=e1724]
+                - generic [ref=e1725]: Context 2M
+              - generic [ref=e1726]:
+                - code [ref=e1727]: gemini-3-pro
+                - button "复制模型 ID" [ref=e1728]
+              - paragraph [ref=e1732]: 超长上下文多模态模型，可处理大型代码库、视频、音频与复杂文档。
+              - generic [ref=e1733]:
+                - generic [ref=e1734]: "#2M 上下文"
+                - generic [ref=e1735]: "#多模态"
+                - generic [ref=e1736]: "#代码理解"
+            - generic [ref=e1737]: 2M
+            - generic [ref=e1740]:
+              - strong [ref=e1741]: ¥0.009
+              - text: / 1K
+              - generic [ref=e1742]: 按实际 Token 计费
+            - generic [ref=e1747]:
+              - strong [ref=e1748]: ¥0.036
+              - text: / 1K
+              - generic [ref=e1749]: 典型延迟 121ms
+            - generic [ref=e1754]:
+              - strong [ref=e1755]: 99.90%
+              - generic "运行正常" [ref=e1756]
+            - button "接入 Gemini 3 Pro" [ref=e1784]
+      - generic [ref=e1787]:
+        - paragraph [ref=e1788]: 页面价格为当前参考价，实际结算以控制台账单为准。
+        - button "查看计费说明" [ref=e1789]
+  - contentinfo [ref=e914]:
+    - generic [ref=e916]:
+      - generic [ref=e917]:
+        - generic [ref=e918]:
+          - generic [ref=e920] [cursor=pointer]
+          - generic [ref=e931]: fytapi.com
+        - paragraph [ref=e933]: 为企业和专业人士打造的 Agentic LLM 统一网关
+        - generic [ref=e934]:
+          - generic [ref=e935]: 联系我们
+          - generic [ref=e938]:
+            - link "X (Twitter)" [ref=e939] [cursor=pointer]:
+              - /url: https://x.com
+            - link "Discord" [ref=e942] [cursor=pointer]:
+              - /url: https://discord.com
+            - link "in" [ref=e945] [cursor=pointer]:
+              - /url: https://linkedin.com
+            - link "YouTube" [ref=e946] [cursor=pointer]:
+              - /url: https://youtube.com
+      - generic [ref=e949]:
+        - generic:
+          - generic:
+            - generic:
+              - generic: ★ FYTAPI.COM ★
+              - generic: 邀请返现
+        - generic [ref=e950]:
+          - generic [ref=e951]:
+            - generic [ref=e952]: 产品
+            - list [ref=e953]:
+              - listitem [ref=e954]:
+                - button "定价" [ref=e955] [cursor=pointer]
+              - listitem [ref=e956]:
+                - button "模型排行榜" [ref=e957] [cursor=pointer]
+              - listitem [ref=e958]:
+                - button "服务保障" [ref=e959] [cursor=pointer]
+              - listitem [ref=e960]:
+                - button "控制台" [ref=e961] [cursor=pointer]
+          - generic [ref=e962]:
+            - generic [ref=e963]: 资源
+            - list [ref=e964]:
+              - listitem [ref=e965]:
+                - button "接入 Agent" [ref=e966] [cursor=pointer]
+              - listitem [ref=e967]:
+                - button "API 文档" [ref=e968] [cursor=pointer]
+              - listitem [ref=e969]:
+                - button "邀请返现" [ref=e970] [cursor=pointer]
+          - generic [ref=e971]:
+            - generic [ref=e972]: 公司
+            - list [ref=e973]:
+              - listitem [ref=e974]: 关于智能路由
+              - listitem [ref=e975]: 博客
+              - listitem [ref=e976]: 企业解决方案
+        - generic [ref=e977]: 保留所有权利。

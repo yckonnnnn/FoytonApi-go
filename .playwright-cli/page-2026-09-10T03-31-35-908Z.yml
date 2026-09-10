@@ -1,0 +1,165 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic "Foyton API - 企业级大模型与智能体中转平台" [ref=e6] [cursor=pointer]:
+        - generic [ref=e18]:
+          - generic [ref=e19]: Foyton
+          - generic [ref=e20]: API
+      - navigation [ref=e21]:
+        - button "主页" [ref=e22] [cursor=pointer]
+        - button "模型广场" [ref=e23] [cursor=pointer]
+        - button "控制台" [ref=e24] [cursor=pointer]
+        - button "接入文档" [ref=e26] [cursor=pointer]
+      - generic [ref=e27]:
+        - button "中 / EN" [ref=e28] [cursor=pointer]:
+          - generic [ref=e32]:
+            - generic [ref=e33]: 中
+            - generic [ref=e34]: /
+            - generic [ref=e35]: EN
+        - button "admin admin" [ref=e37] [cursor=pointer]:
+          - img "admin" [ref=e38]
+          - generic [ref=e39]: admin
+  - main [ref=e42]:
+    - generic [ref=e982]:
+      - generic [ref=e983]:
+        - generic [ref=e984]:
+          - generic [ref=e985]: FOYTON 模型目录
+          - heading "选模型，先看清价格与稳定性" [level=1] [ref=e988]
+          - paragraph [ref=e989]: 统一查看主流模型的上下文、输入输出价格和线路可用率。价格透明，模型 ID 可直接复制使用。
+        - generic [ref=e990]:
+          - button "咨询线路方案" [ref=e991]
+          - button "接入文档" [ref=e995]
+      - region "模型筛选" [ref=e1002]:
+        - generic [ref=e1003]:
+          - generic [ref=e1004]:
+            - button "精选" [ref=e1005]
+            - button "OpenAI" [active] [pressed] [ref=e1010]
+            - button "Anthropic" [ref=e1014]
+            - button "Google" [ref=e1018]
+            - button "DeepSeek" [ref=e1022]
+            - button "通义千问" [ref=e1026]
+          - generic [ref=e1030]:
+            - generic [ref=e1031]: 搜索模型
+            - searchbox "搜索模型" [ref=e1032]
+        - generic [ref=e1033]:
+          - generic [ref=e1034]: 能力
+          - button "全部类型" [ref=e1035]
+          - button "深度推理" [ref=e1036]
+          - button "旗舰通用" [ref=e1037]
+          - button "极速轻量" [ref=e1038]
+          - button "视觉 / 长上下文" [ref=e1039]
+          - generic [ref=e1040]: 2 个结果
+      - generic [ref=e1041]:
+        - generic [ref=e1042]:
+          - generic [ref=e1043]: 模型
+          - generic [ref=e1044]: 上下文
+          - generic [ref=e1045]: 输入价格
+          - generic [ref=e1046]: 输出价格
+          - generic [ref=e1047]: 线路可用率
+          - generic [ref=e1048]: 接入
+        - generic [ref=e1049]:
+          - article [ref=e1192]:
+            - generic [ref=e1198]:
+              - generic [ref=e1199]:
+                - heading "GPT-4o (Omni)" [level=2] [ref=e1200]
+                - generic [ref=e1201]: MMLU 88.7%
+              - generic [ref=e1202]:
+                - code [ref=e1203]: gpt-4o
+                - button "复制模型 ID" [ref=e1204]
+              - paragraph [ref=e1208]: 低延迟全模态模型，适合企业多任务、实时交互与视觉理解。
+              - generic [ref=e1209]:
+                - generic [ref=e1210]: "#全模态"
+                - generic [ref=e1211]: "#高并发"
+                - generic [ref=e1212]: "#视觉解析"
+            - generic [ref=e1213]: 128K
+            - generic [ref=e1216]:
+              - strong [ref=e1217]: ¥0.018
+              - text: / 1K
+              - generic [ref=e1218]: 按实际 Token 计费
+            - generic [ref=e1223]:
+              - strong [ref=e1224]: ¥0.072
+              - text: / 1K
+              - generic [ref=e1225]: 典型延迟 118ms
+            - generic [ref=e1230]:
+              - strong [ref=e1231]: 99.96%
+              - generic "运行正常" [ref=e1232]
+            - button "接入 GPT-4o (Omni)" [ref=e1260]
+          - article [ref=e1546]:
+            - generic [ref=e1552]:
+              - heading "GPT-4o mini" [level=2] [ref=e1554]
+              - generic [ref=e1555]:
+                - code [ref=e1556]: gpt-4o-mini
+                - button "复制模型 ID" [ref=e1557]
+              - paragraph [ref=e1561]: 支持视觉理解的轻量模型，适合高吞吐日常场景与小型工作流。
+              - generic [ref=e1562]:
+                - generic [ref=e1563]: "#极速响应"
+                - generic [ref=e1564]: "#超低费用"
+                - generic [ref=e1565]: "#轻量视觉"
+            - generic [ref=e1566]: 128K
+            - generic [ref=e1569]:
+              - strong [ref=e1570]: ¥0.001
+              - text: / 1K
+              - generic [ref=e1571]: 按实际 Token 计费
+            - generic [ref=e1576]:
+              - strong [ref=e1577]: ¥0.004
+              - text: / 1K
+              - generic [ref=e1578]: 典型延迟 76ms
+            - generic [ref=e1583]:
+              - strong [ref=e1584]: 99.98%
+              - generic "运行正常" [ref=e1585]
+            - button "接入 GPT-4o mini" [ref=e1613]
+      - generic [ref=e1616]:
+        - paragraph [ref=e1617]: 页面价格为当前参考价，实际结算以控制台账单为准。
+        - button "查看计费说明" [ref=e1618]
+  - contentinfo [ref=e914]:
+    - generic [ref=e916]:
+      - generic [ref=e917]:
+        - generic [ref=e918]:
+          - generic [ref=e920] [cursor=pointer]
+          - generic [ref=e931]: fytapi.com
+        - paragraph [ref=e933]: 为企业和专业人士打造的 Agentic LLM 统一网关
+        - generic [ref=e934]:
+          - generic [ref=e935]: 联系我们
+          - generic [ref=e938]:
+            - link "X (Twitter)" [ref=e939] [cursor=pointer]:
+              - /url: https://x.com
+            - link "Discord" [ref=e942] [cursor=pointer]:
+              - /url: https://discord.com
+            - link "in" [ref=e945] [cursor=pointer]:
+              - /url: https://linkedin.com
+            - link "YouTube" [ref=e946] [cursor=pointer]:
+              - /url: https://youtube.com
+      - generic [ref=e949]:
+        - generic:
+          - generic:
+            - generic:
+              - generic: ★ FYTAPI.COM ★
+              - generic: 邀请返现
+        - generic [ref=e950]:
+          - generic [ref=e951]:
+            - generic [ref=e952]: 产品
+            - list [ref=e953]:
+              - listitem [ref=e954]:
+                - button "定价" [ref=e955] [cursor=pointer]
+              - listitem [ref=e956]:
+                - button "模型排行榜" [ref=e957] [cursor=pointer]
+              - listitem [ref=e958]:
+                - button "服务保障" [ref=e959] [cursor=pointer]
+              - listitem [ref=e960]:
+                - button "控制台" [ref=e961] [cursor=pointer]
+          - generic [ref=e962]:
+            - generic [ref=e963]: 资源
+            - list [ref=e964]:
+              - listitem [ref=e965]:
+                - button "接入 Agent" [ref=e966] [cursor=pointer]
+              - listitem [ref=e967]:
+                - button "API 文档" [ref=e968] [cursor=pointer]
+              - listitem [ref=e969]:
+                - button "邀请返现" [ref=e970] [cursor=pointer]
+          - generic [ref=e971]:
+            - generic [ref=e972]: 公司
+            - list [ref=e973]:
+              - listitem [ref=e974]: 关于智能路由
+              - listitem [ref=e975]: 博客
+              - listitem [ref=e976]: 企业解决方案
+        - generic [ref=e977]: 保留所有权利。

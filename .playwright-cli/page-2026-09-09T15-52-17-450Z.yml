@@ -1,0 +1,456 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic "Foyton API - 企业级大模型与智能体中转平台" [ref=e6] [cursor=pointer]:
+        - generic [ref=e18]:
+          - generic [ref=e19]: Foyton
+          - generic [ref=e20]: API
+      - navigation [ref=e21]:
+        - button "主页" [ref=e22] [cursor=pointer]
+        - button "模型广场" [ref=e23] [cursor=pointer]
+        - button "控制台" [ref=e24] [cursor=pointer]
+        - button "接入文档" [ref=e26] [cursor=pointer]
+      - generic [ref=e27]:
+        - button "中 / EN" [ref=e28] [cursor=pointer]:
+          - generic [ref=e32]:
+            - generic [ref=e33]: 中
+            - generic [ref=e34]: /
+            - generic [ref=e35]: EN
+        - button "admin admin" [ref=e37] [cursor=pointer]:
+          - img "admin" [ref=e38]
+          - generic [ref=e39]: admin
+  - main [ref=e42]:
+    - generic:
+      - generic:
+        - generic:
+          - generic: +
+          - generic: +
+          - generic: +
+          - generic: +
+        - generic: ✦
+        - generic:
+          - generic: +
+          - generic: +
+    - generic [ref=e43]:
+      - paragraph [ref=e44]: AI Agent 智能体路由 · 高可用中转网关
+      - generic [ref=e48]:
+        - heading "Agent 接入" [level=1] [ref=e49]
+        - generic [ref=e50]: 大模型统一入口
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]: 全球模型直连
+            - generic [ref=e58]: AGENT 客户端
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - button "Claude" [ref=e63] [cursor=pointer]
+              - button "GPT" [ref=e68] [cursor=pointer]
+              - button "Gemini" [ref=e73] [cursor=pointer]
+            - generic [ref=e78]:
+              - generic [ref=e79] [cursor=pointer]:
+                - generic [ref=e80]: ✦
+                - generic [ref=e81]: +
+                - generic [ref=e82]: +
+                - generic [ref=e83]: ✦
+                - generic [ref=e84]: +
+              - generic [ref=e115]:
+                - generic [ref=e117] [cursor=pointer]
+                - generic [ref=e128]: 智能调度中枢
+            - generic [ref=e129]:
+              - button "Claude Code" [ref=e130] [cursor=pointer]
+              - button "Codex" [ref=e144] [cursor=pointer]
+              - button "CC Switch" [ref=e150] [cursor=pointer]
+              - button "OpenClaw" [ref=e158] [cursor=pointer]
+        - paragraph [ref=e174]: —— 已支持 10+ Agent / 客户端与开发者工具生态 ——
+    - generic [ref=e175]:
+      - generic [ref=e176]:
+        - button "开发者控制台 Console 即插即用 · 零迁移无缝兼容 OpenAI SDK" [ref=e177] [cursor=pointer]:
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - generic [ref=e184]: 开发者控制台
+              - generic [ref=e185]: Console
+            - paragraph [ref=e186]: 即插即用 · 零迁移无缝兼容 OpenAI SDK
+        - button "模型广场与定价矩阵 Models Claude 3.7 / GPT-4o / DeepSeek 毫秒直连" [ref=e189] [cursor=pointer]:
+          - generic [ref=e196]:
+            - generic [ref=e197]:
+              - generic [ref=e198]: 模型广场与定价矩阵
+              - generic [ref=e199]: Models
+            - paragraph [ref=e200]: Claude 3.7 / GPT-4o / DeepSeek 毫秒直连
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - generic [ref=e205]:
+            - heading "为什么选 Foyton API？" [level=2] [ref=e206]
+            - paragraph [ref=e207]: 可低成本稳定运行 Agent Harness 任务，模型表现与成本控制稳定、可审计。
+          - generic [ref=e208]:
+            - generic [ref=e217]:
+              - heading "模型不降级" [level=3] [ref=e218]
+              - paragraph [ref=e219]: 模型请求直达已验证上游，绝不静默替换或降级，支持请求级真伪验证。
+            - generic [ref=e227]:
+              - heading "数据隐私" [level=3] [ref=e228]
+              - paragraph [ref=e229]: Prompt 与结果只用于路由、计量、计费与技术支持，绝不训练、绝不出售。
+            - generic [ref=e241]:
+              - heading "消费可追踪" [level=3] [ref=e242]
+              - paragraph [ref=e243]: 可控制团队预算与路由策略，账单逐条可查，企业客户 1 对 1 服务。
+        - generic [ref=e244]:
+          - generic [ref=e245]:
+            - heading "这个价格是怎么做到的？" [level=2] [ref=e246]
+            - paragraph [ref=e247]: 一个账户，一张账单。上游供应商由我们逐家验。
+          - generic [ref=e248]:
+            - generic [ref=e259]:
+              - heading "供应商竞价网络" [level=3] [ref=e260]
+              - paragraph [ref=e261]: 海量模型供应商入驻，平台严苛把关质量，帮您打掉信息差。
+            - generic [ref=e276]:
+              - heading "规模化采购" [level=3] [ref=e277]
+              - paragraph [ref=e278]: 与已验证的供应商签企业级用量承诺，确保拿到市场最低价。
+            - generic [ref=e289]:
+              - heading "Foyton 平台补贴" [level=3] [ref=e290]
+              - paragraph [ref=e291]: 多家头部基金押注，回馈用户，大额补贴进行中。
+      - generic [ref=e300]:
+        - heading "生产级 LLM 智能路由架构" [level=2] [ref=e301]
+        - paragraph [ref=e302]: 专为 Agent、代码辅助与高并发系统打造。在保持 100% 原生接口协议兼容的同时，通过多云智能路由、实时健康探测与高频自动竞价，全面降低成本并提升可用性。
+        - generic [ref=e303]:
+          - generic [ref=e304]:
+            - generic [ref=e305]: 价格
+            - generic [ref=e306]: 全网高频动态竞价，综合成本低至 1~3 折
+          - generic [ref=e307]:
+            - generic [ref=e308]: 延迟
+            - generic [ref=e309]: 全球优质边缘直连专线，首字延迟 < 380ms
+          - generic [ref=e310]:
+            - generic [ref=e311]: 适用
+            - generic [ref=e312]: 高并发生产环境、Agent 多步调用、长文本高频推理
+          - generic [ref=e313]:
+            - generic [ref=e314]: 保障
+            - generic [ref=e315]: 99.99% 企业级 SLA，多云热备秒级无感容灾切换
+        - generic [ref=e316]:
+          - button "立即在线接入测试" [ref=e317] [cursor=pointer]
+          - button "预约企业架构师咨询" [ref=e321] [cursor=pointer]
+  - generic [ref=e323]:
+    - generic [ref=e325]:
+      - generic [ref=e326]:
+        - generic [ref=e327]:
+          - heading "模型价格参考" [level=2] [ref=e328]
+          - paragraph [ref=e329]: "页面价格便于比较模型；请求处理完成后，以用量日志记录的金额为准。价格单位: USD / 1M Tokens."
+        - button "查看接入方式" [ref=e330] [cursor=pointer]
+      - generic [ref=e334]:
+        - article [ref=e335]:
+          - generic [ref=e336]:
+            - generic [ref=e341]:
+              - heading "GPT-6 Astra" [level=3] [ref=e342]
+              - generic [ref=e343]: OpenAI · 上下文 1M
+            - generic [ref=e344]:
+              - generic [ref=e345]: 上新
+              - generic [ref=e349]: 参考价格
+          - generic [ref=e350]:
+            - generic [ref=e351]:
+              - generic [ref=e352]: 输入参考价 / 1M
+              - generic [ref=e353]: $1.10
+            - generic [ref=e354]:
+              - generic [ref=e355]: 输出参考价 / 1M
+              - generic [ref=e356]: $6.70
+          - generic [ref=e357]:
+            - generic [ref=e358]: 极速通道
+            - button "快速接入" [ref=e361] [cursor=pointer]
+        - article [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e368]:
+              - heading "Claude Fable 5.1" [level=3] [ref=e369]
+              - generic [ref=e370]: Anthropic · 上下文 1M
+            - generic [ref=e371]:
+              - generic [ref=e372]: 上新
+              - generic [ref=e376]: 参考价格
+          - generic [ref=e377]:
+            - generic [ref=e378]:
+              - generic [ref=e379]: 输入参考价 / 1M
+              - generic [ref=e380]: $2.47
+            - generic [ref=e381]:
+              - generic [ref=e382]: 输出参考价 / 1M
+              - generic [ref=e383]: $12.35
+          - generic [ref=e384]:
+            - generic [ref=e385]: 非实时价格
+            - button "快速接入" [ref=e386] [cursor=pointer]
+        - article [ref=e387]:
+          - generic [ref=e388]:
+            - generic [ref=e393]:
+              - heading "Claude Opus 5" [level=3] [ref=e394]
+              - generic [ref=e395]: Anthropic · 上下文 1M
+            - generic [ref=e396]: 参考价格
+          - generic [ref=e398]:
+            - generic [ref=e399]:
+              - generic [ref=e400]: 输入参考价 / 1M
+              - generic [ref=e401]: $1.04
+            - generic [ref=e402]:
+              - generic [ref=e403]: 输出参考价 / 1M
+              - generic [ref=e404]: $5.20
+          - generic [ref=e405]:
+            - generic [ref=e406]: 非实时价格
+            - button "快速接入" [ref=e407] [cursor=pointer]
+        - article [ref=e408]:
+          - generic [ref=e409]:
+            - generic [ref=e415]:
+              - heading "Kimi K3" [level=3] [ref=e416]
+              - generic [ref=e417]: Kimi · 上下文 1M
+            - generic [ref=e418]: 参考价格
+          - generic [ref=e420]:
+            - generic [ref=e421]:
+              - generic [ref=e422]: 输入参考价 / 1M
+              - generic [ref=e423]: $2.33
+            - generic [ref=e424]:
+              - generic [ref=e425]: 输出参考价 / 1M
+              - generic [ref=e426]: $11.64
+          - generic [ref=e427]:
+            - generic [ref=e428]: 非实时价格
+            - button "快速接入" [ref=e429] [cursor=pointer]
+        - article [ref=e430]:
+          - generic [ref=e431]:
+            - generic [ref=e436]:
+              - heading "DeepSeek V4 Flash" [level=3] [ref=e437]
+              - generic [ref=e438]: DeepSeek · 上下文 1M
+            - generic [ref=e439]: 参考价格
+          - generic [ref=e441]:
+            - generic [ref=e442]:
+              - generic [ref=e443]: 输入参考价 / 1M
+              - generic [ref=e444]: $0.28
+            - generic [ref=e445]:
+              - generic [ref=e446]: 输出参考价 / 1M
+              - generic [ref=e447]: $0.84
+          - generic [ref=e448]:
+            - generic [ref=e449]: 非实时价格
+            - button "快速接入" [ref=e450] [cursor=pointer]
+        - article [ref=e451]:
+          - generic [ref=e452]:
+            - generic [ref=e466]:
+              - heading "GLM-5.3-Flash (Ox Alpha)" [level=3] [ref=e467]
+              - generic [ref=e468]: GLM · 上下文 1M
+            - generic [ref=e469]: 参考价格
+          - generic [ref=e471]:
+            - generic [ref=e472]:
+              - generic [ref=e473]: 输入参考价 / 1M
+              - generic [ref=e474]: $0.0612
+            - generic [ref=e475]:
+              - generic [ref=e476]: 输出参考价 / 1M
+              - generic [ref=e477]: $0.21
+          - generic [ref=e478]:
+            - generic [ref=e479]: 非实时价格
+            - button "快速接入" [ref=e480] [cursor=pointer]
+    - generic [ref=e482]:
+      - generic [ref=e483]:
+        - generic [ref=e484]: 为稳定调用而设计
+        - heading "从一次调用，到一条清晰记录" [level=2] [ref=e488]
+        - paragraph [ref=e489]: 一次接入，照常发起请求，每一笔调用都清楚可查。
+      - generic [ref=e490]:
+        - generic [ref=e494]:
+          - generic [ref=e495]:
+            - generic [ref=e496]: 兼容 OpenAI 接入方式
+            - heading "一个地址，连接团队需要的模型" [level=3] [ref=e499]
+            - paragraph [ref=e500]: 保留原有使用习惯，连接、路由与每次调用的记录都由平台统一处理。
+          - button "查看接入方式" [ref=e501] [cursor=pointer]
+        - generic [ref=e504]:
+          - generic [ref=e505]:
+            - generic [ref=e506]:
+              - heading "每一次调用，都清楚可查" [level=3] [ref=e507]
+              - paragraph [ref=e508]: 从选择模型到查看记录，过程始终简单明了。
+            - generic [ref=e509]: 过程清晰透明
+          - generic [ref=e510]:
+            - generic [ref=e511]:
+              - generic [ref=e512]: "01"
+              - heading "选择模型" [level=4] [ref=e519]
+              - paragraph [ref=e520]: 继续使用现有工作流里的模型名称。
+            - generic [ref=e521]:
+              - generic [ref=e522]: "02"
+              - heading "发起请求" [level=4] [ref=e529]
+              - paragraph [ref=e530]: 在已支持的客户端中使用同一个地址。
+            - generic [ref=e531]:
+              - generic [ref=e532]: "03"
+              - heading "查看记录" [level=4] [ref=e538]
+              - paragraph [ref=e539]: 需要时可在同一处查看用量和调用详情。
+          - generic [ref=e540]:
+            - generic [ref=e541]: 提示缓存
+            - generic [ref=e542]: 自动切换
+            - generic [ref=e543]: 统一账单
+            - generic [ref=e544]: 用量记录
+    - generic [ref=e546]:
+      - generic [ref=e547]:
+        - generic [ref=e548]:
+          - heading "模型使用量" [level=2] [ref=e549]
+          - paragraph [ref=e550]: 每日经智能路由 API 路由的 token 总量
+        - generic [ref=e551]:
+          - generic [ref=e552]: 1.4T tokens
+          - generic [ref=e553]: 6.0% 较昨日
+      - generic [ref=e558]:
+        - generic [ref=e559]:
+          - generic [ref=e560]:
+            - generic [ref=e561]:
+              - generic [ref=e562]: 近 30 日每日 Token 吞吐分布
+              - generic [ref=e563]: 08/11 ~ 09/09
+            - generic [ref=e564]:
+              - generic [ref=e565]: GPT
+              - generic [ref=e567]: Claude
+              - generic [ref=e569]: DeepSeek
+              - generic [ref=e571]: Kimi
+              - generic [ref=e573]: 其他
+          - generic [ref=e575]:
+            - generic [ref=e576]:
+              - generic [ref=e577] [cursor=pointer]
+              - generic [ref=e584] [cursor=pointer]
+              - generic [ref=e591] [cursor=pointer]
+              - generic [ref=e598] [cursor=pointer]
+              - generic [ref=e605] [cursor=pointer]
+              - generic [ref=e612] [cursor=pointer]
+              - generic [ref=e619] [cursor=pointer]
+              - generic [ref=e626] [cursor=pointer]
+              - generic [ref=e633] [cursor=pointer]
+              - generic [ref=e640] [cursor=pointer]
+              - generic [ref=e647] [cursor=pointer]
+              - generic [ref=e654] [cursor=pointer]
+              - generic [ref=e661] [cursor=pointer]
+              - generic [ref=e668] [cursor=pointer]
+              - generic [ref=e675] [cursor=pointer]
+              - generic [ref=e682] [cursor=pointer]
+              - generic [ref=e689] [cursor=pointer]
+              - generic [ref=e696] [cursor=pointer]
+              - generic [ref=e703] [cursor=pointer]
+              - generic [ref=e710] [cursor=pointer]
+              - generic [ref=e717] [cursor=pointer]
+              - generic [ref=e724] [cursor=pointer]
+              - generic [ref=e731] [cursor=pointer]
+              - generic [ref=e738] [cursor=pointer]
+              - generic [ref=e745] [cursor=pointer]
+              - generic [ref=e752] [cursor=pointer]
+              - generic [ref=e759] [cursor=pointer]
+              - generic [ref=e766] [cursor=pointer]
+              - generic [ref=e773] [cursor=pointer]
+              - generic [ref=e780] [cursor=pointer]
+            - generic [ref=e787]:
+              - generic [ref=e788]: 08/11
+              - generic [ref=e789]: 08/18
+              - generic [ref=e790]: 08/25
+              - generic [ref=e791]: 09/01
+              - generic [ref=e792]: 09/09
+          - generic [ref=e793]:
+            - generic [ref=e794]: 智能冷热存储与提示缓存分流占比
+            - generic [ref=e795]: ">99% Cache Hit"
+        - generic [ref=e796]:
+          - generic [ref=e797]:
+            - generic [ref=e798]:
+              - button "Agent 排行榜" [ref=e799] [cursor=pointer]
+              - button "模型排行榜" [ref=e800] [cursor=pointer]
+            - generic [ref=e801]: 近 24 小时活跃
+          - generic [ref=e802]:
+            - generic [ref=e803]:
+              - generic [ref=e804]:
+                - generic [ref=e805]: "01"
+                - generic [ref=e806]:
+                  - generic [ref=e807]: Codex Desktop
+                  - generic [ref=e809]: 任务 18940K 次
+              - generic [ref=e810]:
+                - generic [ref=e811]: 2362.8B tokens
+                - generic [ref=e812]: +18.2%
+            - generic [ref=e817]:
+              - generic [ref=e818]:
+                - generic [ref=e819]: "02"
+                - generic [ref=e820]:
+                  - generic [ref=e821]: Claude CLI
+                  - generic [ref=e823]: 任务 5363.2K 次
+              - generic [ref=e824]:
+                - generic [ref=e825]: 870.5B tokens
+                - generic [ref=e826]: +11.2%
+            - generic [ref=e831]:
+              - generic [ref=e832]:
+                - generic [ref=e833]: "03"
+                - generic [ref=e834]:
+                  - generic [ref=e835]: Codex CLI
+                  - generic [ref=e837]: 任务 4925.3K 次
+              - generic [ref=e838]:
+                - generic [ref=e839]: 293.4B tokens
+                - generic [ref=e840]: +850.5%
+            - generic [ref=e845]:
+              - generic [ref=e846]:
+                - generic [ref=e847]: "04"
+                - generic [ref=e848]:
+                  - generic [ref=e849]: Cursor IDE Pro
+                  - generic [ref=e851]: 任务 3180.6K 次
+              - generic [ref=e852]:
+                - generic [ref=e853]: 245.1B tokens
+                - generic [ref=e854]: +34.8%
+            - generic [ref=e859]:
+              - generic [ref=e860]:
+                - generic [ref=e861]: "05"
+                - generic [ref=e862]:
+                  - generic [ref=e863]: Windsurf Agent
+                  - generic [ref=e865]: 任务 2410.9K 次
+              - generic [ref=e866]:
+                - generic [ref=e867]: 198.6B tokens
+                - generic [ref=e868]: +42.1%
+            - generic [ref=e873]:
+              - generic [ref=e874]:
+                - generic [ref=e875]: "06"
+                - generic [ref=e876]:
+                  - generic [ref=e877]: Cline (VS Code)
+                  - generic [ref=e879]: 任务 1890.1K 次
+              - generic [ref=e880]:
+                - generic [ref=e881]: 162.3B tokens
+                - generic [ref=e882]: +19.5%
+    - generic [ref=e890]:
+      - heading "每一份 token 都更划算" [level=2] [ref=e900]
+      - paragraph [ref=e902]: 现在充值，让每一次调用都跑在更低的成本上。美元余额持续保留在你的账户中，随用随扣。
+      - button "购买" [ref=e904] [cursor=pointer]
+      - generic [ref=e910]:
+        - generic [ref=e911]: 美元计费
+        - generic [ref=e912]: ·
+        - generic [ref=e913]: 无最低消费
+        - generic [ref=e914]: ·
+        - generic [ref=e915]: 随时充值
+        - generic [ref=e916]: ·
+        - generic [ref=e917]: 支持支付宝
+  - contentinfo [ref=e918]:
+    - generic [ref=e920]:
+      - generic [ref=e921]:
+        - generic [ref=e922]:
+          - generic [ref=e924] [cursor=pointer]
+          - generic [ref=e935]: fytapi.com
+        - paragraph [ref=e937]: 为企业和专业人士打造的 Agentic LLM 统一网关
+        - generic [ref=e938]:
+          - generic [ref=e939]: 联系我们
+          - generic [ref=e942]:
+            - link "X (Twitter)" [ref=e943] [cursor=pointer]:
+              - /url: https://x.com
+            - link "Discord" [ref=e946] [cursor=pointer]:
+              - /url: https://discord.com
+            - link "in" [ref=e949] [cursor=pointer]:
+              - /url: https://linkedin.com
+            - link "YouTube" [ref=e950] [cursor=pointer]:
+              - /url: https://youtube.com
+      - generic [ref=e953]:
+        - generic:
+          - generic:
+            - generic:
+              - generic: ★ FYTAPI.COM ★
+              - generic: 邀请返现
+        - generic [ref=e954]:
+          - generic [ref=e955]:
+            - generic [ref=e956]: 产品
+            - list [ref=e957]:
+              - listitem [ref=e958]:
+                - button "定价" [ref=e959] [cursor=pointer]
+              - listitem [ref=e960]:
+                - button "模型排行榜" [ref=e961] [cursor=pointer]
+              - listitem [ref=e962]:
+                - button "服务保障" [ref=e963] [cursor=pointer]
+              - listitem [ref=e964]:
+                - button "控制台" [ref=e965] [cursor=pointer]
+          - generic [ref=e966]:
+            - generic [ref=e967]: 资源
+            - list [ref=e968]:
+              - listitem [ref=e969]:
+                - button "接入 Agent" [ref=e970] [cursor=pointer]
+              - listitem [ref=e971]:
+                - button "API 文档" [ref=e972] [cursor=pointer]
+              - listitem [ref=e973]:
+                - button "邀请返现" [ref=e974] [cursor=pointer]
+          - generic [ref=e975]:
+            - generic [ref=e976]: 公司
+            - list [ref=e977]:
+              - listitem [ref=e978]: 关于智能路由
+              - listitem [ref=e979]: 博客
+              - listitem [ref=e980]: 企业解决方案
+        - generic [ref=e981]: 保留所有权利。

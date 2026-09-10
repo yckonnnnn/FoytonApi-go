@@ -175,7 +175,7 @@ export const AiRelayHub: React.FC<AiRelayHubProps> = ({
                 API 统一中转地址 (Base URL)
               </span>
               <button
-                onClick={() => copyToClipboard('https://api.foyton.com/v1', false)}
+                onClick={() => copyToClipboard('https://fytapi.com/v1', false)}
                 className="text-xs text-purple-600 hover:text-purple-700 font-medium flex items-center gap-1"
               >
                 {copiedUrl ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
@@ -183,7 +183,7 @@ export const AiRelayHub: React.FC<AiRelayHubProps> = ({
               </button>
             </div>
             <code className="text-xs font-mono font-semibold text-neutral-900 bg-white px-2.5 py-1.5 rounded-lg border border-neutral-200 block truncate">
-              https://api.foyton.com/v1
+              https://fytapi.com/v1
             </code>
           </div>
 
@@ -416,7 +416,7 @@ export const AiRelayHub: React.FC<AiRelayHubProps> = ({
               <code>{`from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://api.foyton.com/v1",
+    base_url="https://fytapi.com/v1",
     api_key="${apiKey}"
 )
 
@@ -430,7 +430,7 @@ print(response.choices[0].message.content)`}</code>
 
             <div className="bg-[#111317] rounded-2xl p-4 text-xs font-mono text-neutral-200 overflow-x-auto">
               <div className="text-neutral-500 mb-2">// cURL 快速测试</div>
-              <code>{`curl https://api.foyton.com/v1/chat/completions \\
+              <code>{`curl https://fytapi.com/v1/chat/completions \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer ${apiKey}" \\
   -d '{
