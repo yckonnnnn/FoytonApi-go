@@ -27,58 +27,7 @@ export const ConsoleBillingLogs: React.FC = () => {
   const [selectedModel, setSelectedModel] = useState<string>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  // Extended mock logs for rich demo
-  const allLogs: ConsumptionLog[] = [
-    ...consumptionLogs,
-    {
-      id: 'log_07',
-      requestId: 'req_gpt4o_221g',
-      timestamp: '2026-03-09 09:00:18',
-      model: 'gpt-4o-2024-11-20',
-      promptTokens: 1200,
-      completionTokens: 450,
-      totalTokens: 1650,
-      cost: 0.036,
-      status: 200,
-      latencyMs: 165,
-    },
-    {
-      id: 'log_08',
-      requestId: 'req_deepseek_109h',
-      timestamp: '2026-03-09 08:45:02',
-      model: 'deepseek-chat-v3',
-      promptTokens: 12400,
-      completionTokens: 3800,
-      totalTokens: 16200,
-      cost: 0.038,
-      status: 200,
-      latencyMs: 98,
-    },
-    {
-      id: 'log_09',
-      requestId: 'req_claude35_998i',
-      timestamp: '2026-03-09 08:32:41',
-      model: 'claude-3-5-sonnet-20241022',
-      promptTokens: 4800,
-      completionTokens: 1620,
-      totalTokens: 6420,
-      cost: 0.158,
-      status: 200,
-      latencyMs: 180,
-    },
-    {
-      id: 'log_10',
-      requestId: 'req_gemini_882j',
-      timestamp: '2026-03-09 08:15:10',
-      model: 'gemini-1.5-pro-002',
-      promptTokens: 9200,
-      completionTokens: 1100,
-      totalTokens: 10300,
-      cost: 0.054,
-      status: 200,
-      latencyMs: 215,
-    }
-  ];
+  const allLogs: ConsumptionLog[] = consumptionLogs;
 
   const filteredLogs = allLogs.filter((log) => {
     const matchesQuery = 
@@ -171,7 +120,7 @@ export const ConsoleBillingLogs: React.FC = () => {
               {filteredLogs.length} <span className="text-xs font-sans text-neutral-400 font-normal">笔</span>
             </div>
           </div>
-          <span className="text-xs font-mono text-neutral-400">100% 成功</span>
+          <span className="text-xs font-mono text-neutral-400">{filteredLogs.length ? Math.round(filteredLogs.filter((log) => log.status >= 200 && log.status < 300).length / filteredLogs.length * 100) : 0}% 成功</span>
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-neutral-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.015)] flex items-center justify-between">
@@ -250,7 +199,7 @@ export const ConsoleBillingLogs: React.FC = () => {
             <span>总计处理 Tokens: <strong className="text-neutral-900">{totalFilteredTokens.toLocaleString()}</strong></span>
           </div>
           <div className="text-[11px] text-neutral-400 font-sans">
-            所有上游均按官方标准计费，已折算最低 1 折企业分流通道
+            金额按本次调用时生效的价格计算，历史账单不会随价格调整而变化
           </div>
         </div>
 
@@ -305,6 +254,7 @@ export const ConsoleBillingLogs: React.FC = () => {
                     <span className={`px-2 py-0.5 rounded-md border text-[11px] font-semibold ${getModelBadge(log.model)}`}>
                       {log.model}
                     </span>
+                    <div className="mt-1 text-[10px] text-neutral-400">{log.provider || '-'} · 输入 ¥{Number(log.inputPrice || 0).toFixed(4)} / 输出 ¥{Number(log.outputPrice || 0).toFixed(4)}（每百万）</div>
                   </td>
 
                   {/* Prompt */}
@@ -329,9 +279,9 @@ export const ConsoleBillingLogs: React.FC = () => {
 
                   {/* Status */}
                   <td className="py-3.5 px-6 text-right">
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10.5px] font-semibold border border-emerald-200/70 inline-flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      200 OK
+                    <span title={log.errorMessage} className={`px-2 py-0.5 rounded-full text-[10.5px] font-semibold border inline-flex items-center gap-1 ${log.status >= 200 && log.status < 300 ? 'bg-emerald-50 text-emerald-700 border-emerald-200/70' : 'bg-red-50 text-red-700 border-red-200'}`}>
+                      <span className={`w-1.5 h-1.5 rounded-full ${log.status >= 200 && log.status < 300 ? 'bg-emerald-500' : 'bg-red-500'}`} />
+                      {log.status} {log.result === 'success' ? '成功' : '失败'}
                     </span>
                   </td>
 
@@ -339,6 +289,7 @@ export const ConsoleBillingLogs: React.FC = () => {
               ))}
             </tbody>
           </table>
+          {!filteredLogs.length && <div className="p-12 text-center text-sm text-neutral-400">暂无真实调用记录</div>}
         </div>
       </div>
 

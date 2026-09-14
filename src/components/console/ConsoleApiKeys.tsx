@@ -24,10 +24,10 @@ export const ConsoleApiKeys: React.FC = () => {
   const [createdKeyData, setCreatedKeyData] = useState<ApiKeyItem | null>(null);
   const [copiedKeyId, setCopiedKeyId] = useState<string | null>(null);
 
-  const handleCreateSubmit = (e: React.FormEvent) => {
+  const handleCreateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newKeyName.trim()) return;
-    const created = createApiKey(newKeyName.trim());
+    const created = await createApiKey(newKeyName.trim());
     setShowCreateModal(false);
     setNewKeyName('');
     setCreatedKeyData(created);
@@ -139,7 +139,7 @@ export const ConsoleApiKeys: React.FC = () => {
                       <button
                         onClick={() => {
                           if (confirm(t.deleteConfirm(key.name))) {
-                            revokeApiKey(key.id);
+                            void revokeApiKey(key.id);
                           }
                         }}
                         className="inline-flex items-center gap-1 px-3 py-1.5 rounded border border-neutral-200 hover:border-red-300 hover:bg-red-50 text-neutral-500 hover:text-red-500 text-xs transition-colors cursor-pointer"

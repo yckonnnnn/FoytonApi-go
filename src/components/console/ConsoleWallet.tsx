@@ -61,11 +61,7 @@ export const ConsoleWallet: React.FC = () => {
   };
 
   const handleOpenPayment = () => {
-    if (currentRechargeAmount <= 0) {
-      alert('请输入或选择有效的充值金额');
-      return;
-    }
-    setShowQrModal(true);
+    alert('在线支付暂未开放。如需增加余额，请联系管理员，由管理员在后台登记并处理。');
   };
 
   const handleConfirmMockPay = () => {
@@ -347,7 +343,7 @@ export const ConsoleWallet: React.FC = () => {
               )}
             </div>
             <div className="text-[11px] text-neutral-400">
-              支付完成即刻到账，支持开具增值税专用/普通发票
+              在线支付暂未开放，当前请联系管理员处理余额与资金记录
             </div>
           </div>
 
@@ -356,7 +352,7 @@ export const ConsoleWallet: React.FC = () => {
             onClick={handleOpenPayment}
             className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-sm shadow-[0_2px_12px_rgba(37,99,235,0.25)] transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
-            <span>立即支付确认</span>
+            <span>联系管理员处理</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

@@ -9,21 +9,31 @@ export type ActiveView =
   | 'console-wallet'
   | 'console-apikeys'
   | 'console-tokens'
-  | 'console-billing';
+  | 'console-billing'
+  | 'status'
+  | 'admin';
 
-export type ConsoleTab = 'wallet' | 'apikeys' | 'tokens' | 'billing';
+export type ConsoleTab = 'wallet' | 'apikeys' | 'tokens' | 'billing' | 'routing' | 'alerts';
 
 export interface UserProfile {
   id: string;
   name: string;
+  username?: string;
   email: string;
   avatar?: string;
   balance: number;
   totalRecharged: number;
   totalSpent: number;
-  role: 'developer' | 'enterprise';
+  role: 'developer' | 'enterprise' | 'admin';
   plan: 'Pro' | 'Enterprise' | 'Free';
   createdAt: string;
+  status?: string;
+  routePolicy?: 'cheapest' | 'stable' | 'provider';
+  preferredProvider?: string;
+  blockedModels?: string[];
+  monthlyBudget?: number;
+  alertThreshold?: number;
+  lowBalanceThreshold?: number;
 }
 
 export interface ApiKeyItem {
@@ -59,6 +69,12 @@ export interface ConsumptionLog {
   cost: number;
   status: number;
   latencyMs: number;
+  upstreamModel?: string;
+  provider?: string;
+  inputPrice?: number;
+  outputPrice?: number;
+  result?: string;
+  errorMessage?: string;
 }
 
 export interface AiModelConfig {

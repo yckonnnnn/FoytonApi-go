@@ -7,6 +7,7 @@ import { ConsoleWallet } from './ConsoleWallet';
 import { ConsoleApiKeys } from './ConsoleApiKeys';
 import { ConsoleTokenUsage } from './ConsoleTokenUsage';
 import { ConsoleBillingLogs } from './ConsoleBillingLogs';
+import { ConsoleAlerts, ConsoleRoutingSettings } from './ConsoleRoutingSettings';
 import {
   Wallet,
   Key,
@@ -15,17 +16,21 @@ import {
   ArrowLeft,
   LogOut,
   Globe,
-  ChevronRight
+  ChevronRight,
+  Settings,
+  Bell
 } from 'lucide-react';
 
 interface ConsoleLayoutProps {
   initialTab?: ConsoleTab;
   onNavigateHome: () => void;
+  onNavigateAdmin?: () => void;
 }
 
 export const ConsoleLayout: React.FC<ConsoleLayoutProps> = ({
   initialTab = 'tokens',
   onNavigateHome,
+  onNavigateAdmin,
 }) => {
   const { user, logout, openAuthModal } = useAuth();
   const { language, toggleLanguage } = useLanguage();
@@ -59,6 +64,8 @@ export const ConsoleLayout: React.FC<ConsoleLayoutProps> = ({
           label: language === 'zh' ? 'API 密钥管理' : 'API Keys',
           icon: <Key className="w-4 h-4" />
         },
+        { id: 'routing', label: language === 'zh' ? '线路与提醒设置' : 'Routing & Alerts', icon: <Settings className="w-4 h-4" /> },
+        { id: 'alerts', label: language === 'zh' ? '通知中心' : 'Notifications', icon: <Bell className="w-4 h-4" /> },
       ]
     },
     {
@@ -168,6 +175,7 @@ export const ConsoleLayout: React.FC<ConsoleLayoutProps> = ({
 
         {/* User Card at Sidebar Bottom */}
         <div className="p-3 border-t border-neutral-100">
+          {user?.role === 'admin' && <button onClick={onNavigateAdmin} className="mb-2 flex w-full items-center gap-2 rounded-xl bg-neutral-900 px-3 py-2 text-xs font-semibold text-white"><Settings className="h-4 w-4"/>进入管理后台</button>}
           <div className="p-2.5 rounded-2xl bg-neutral-50/70 border border-neutral-200/60 flex items-center justify-between">
             <div className="flex items-center gap-2.5 overflow-hidden">
               <img
@@ -277,6 +285,8 @@ export const ConsoleLayout: React.FC<ConsoleLayoutProps> = ({
           {activeTab === 'billing' && (
             <ConsoleBillingLogs />
           )}
+          {activeTab === 'routing' && <ConsoleRoutingSettings />}
+          {activeTab === 'alerts' && <ConsoleAlerts />}
         </main>
 
       </div>

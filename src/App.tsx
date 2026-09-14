@@ -23,15 +23,17 @@ import { LazyThreeWarpTunnel } from './components/LazyThreeWarpTunnel';
 import { AuthModal } from './components/AuthModal';
 import { LoginView } from './components/LoginView';
 import { ConsoleLayout } from './components/console/ConsoleLayout';
+import { AdminPanel } from './components/AdminPanel';
+import { StatusPage } from './components/StatusPage';
 import { ActiveView, ConsoleTab } from './types';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 function MainAppContent() {
-  const [currentView, setCurrentView] = useState<ActiveView>('lost-original');
+  const [currentView, setCurrentView] = useState<ActiveView>(() => window.location.pathname === '/status' ? 'status' : window.location.pathname === '/admin' ? 'admin' : 'lost-original');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const { t } = useLanguage();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading, user } = useAuth();
 
   // Scroll to top whenever the view changes
   useEffect(() => {
@@ -52,8 +54,16 @@ function MainAppContent() {
     return <LoginView onNavigate={(view) => setCurrentView(view)} />;
   }
 
+  if (currentView === 'status') return <StatusPage onBack={() => setCurrentView('lost-original')} />;
+  if (currentView === 'admin') {
+    if (loading) return <div className="flex min-h-screen items-center justify-center bg-[#f7f8fa] text-sm text-neutral-400">正在加载账户…</div>;
+    return user?.role === 'admin' ? <AdminPanel onBack={() => setCurrentView('console-tokens')} /> : <LoginView onNavigate={(view) => setCurrentView(view)} />;
+  }
+
   // If user is inside any console page, render the ConsoleLayout
   if (currentView.startsWith('console')) {
+    if (loading) return <div className="flex min-h-screen items-center justify-center bg-[#f7f8fa] text-sm text-neutral-400">正在加载账户…</div>;
+    if (!isAuthenticated) return <LoginView onNavigate={(view) => setCurrentView(view)} />;
     let initialTab: ConsoleTab = 'tokens';
     if (currentView === 'console-wallet') initialTab = 'wallet';
     else if (currentView === 'console-apikeys') initialTab = 'apikeys';
@@ -65,6 +75,7 @@ function MainAppContent() {
         <ConsoleLayout
           initialTab={initialTab}
           onNavigateHome={() => setCurrentView('lost-original')}
+          onNavigateAdmin={() => setCurrentView('admin')}
         />
         <AuthModal />
       </div>

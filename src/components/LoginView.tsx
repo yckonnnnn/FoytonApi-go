@@ -24,7 +24,7 @@ interface LoginViewProps {
 }
 
 export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
-  const { login, register } = useAuth();
+  const { login, register, sendVerificationCode } = useAuth();
   const { language, toggleLanguage, t } = useLanguage();
 
   const [mode, setMode] = useState<'login' | 'register'>('login');
@@ -34,19 +34,22 @@ export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
+  const [countdown, setCountdown] = useState(0);
+  const [sendingCode, setSendingCode] = useState(false);
   const [inviteCode, setInviteCode] = useState('');
   const [agreeTerms, setAgreeTerms] = useState(true);
   const [loginError, setLoginError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError('');
     if (mode === 'login') {
       if (!username || !password) {
-        setLoginError(language === 'zh' ? '请输入用户名和密码' : 'Please enter username and password');
+        setLoginError(language === 'zh' ? '请输入用户名或邮箱和密码' : 'Please enter username or email and password');
         return;
       }
-      const result = login(username, password);
+      const result = await login(username, password);
       if (result.success) {
         onNavigate('console-wallet');
       } else {
@@ -54,17 +57,37 @@ export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
       }
     } else {
       if (!agreeTerms) return;
-      register(email, name || email.split('@')[0], inviteCode);
-      onNavigate('console-wallet');
+      if (password.length < 8) {
+        setLoginError(language === 'zh' ? '密码至少需要 8 位' : 'Password must be at least 8 characters');
+        return;
+      }
+      if (!/^\d{6}$/.test(verificationCode)) {
+        setLoginError(language === 'zh' ? '请输入 6 位邮箱验证码' : 'Enter the 6-digit email code');
+        return;
+      }
+      const result = await register(email, name, password, verificationCode);
+      if (result.success) onNavigate('console-wallet');
+      else setLoginError(result.error || (language === 'zh' ? '注册失败' : 'Registration failed'));
     }
   };
 
-  const handleQuickDemo = () => {
-    const result = login('admin', 'admin123');
-    if (result.success) {
-      onNavigate('console-wallet');
+  const handleSendCode = async () => {
+    setLoginError('');
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setLoginError(language === 'zh' ? '请先填写有效邮箱地址' : 'Enter a valid email first');
+      return;
     }
+    setSendingCode(true);
+    const result = await sendVerificationCode(email);
+    setSendingCode(false);
+    if (!result.success) { setLoginError(result.error || (language === 'zh' ? '验证码发送失败' : 'Could not send code')); return; }
+    setCountdown(60);
+    const timer = window.setInterval(() => setCountdown((seconds) => {
+      if (seconds <= 1) { window.clearInterval(timer); return 0; }
+      return seconds - 1;
+    }), 1000);
   };
+
 
   const features = [
     { icon: KeyRound, title: t.login_feature1Title, sub: t.login_feature1Sub },
@@ -248,17 +271,17 @@ export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
               </div>
             )}
 
-            {/* Name (register only) */}
+            {/* Optional username (register only); email is the primary registration account. */}
             {mode === 'register' && (
               <div>
                 <label className="block text-xs font-semibold text-neutral-700 mb-1">
-                  {t.login_nameLabel}
+                  {language === 'zh' ? '用户名（选填）' : 'Username (optional)'}
                 </label>
                 <div className="relative">
                   <User className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
-                    placeholder={t.login_namePlaceholder}
+                    placeholder={language === 'zh' ? '例如：yckon（留空将自动生成）' : 'e.g. yckon (auto-generated if blank)'}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-neutral-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-xs sm:text-sm outline-none transition-all bg-white"
@@ -267,11 +290,11 @@ export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
               </div>
             )}
 
-            {/* Username (login) / Email (register) */}
+            {/* Username or email for login; email is required for registration. */}
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1">
                 {mode === 'login'
-                  ? (language === 'zh' ? '用户名' : 'Username')
+                  ? (language === 'zh' ? '用户名或邮箱' : 'Username or email')
                   : t.login_emailLabel}
               </label>
               <div className="relative">
@@ -283,7 +306,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
                   type={mode === 'login' ? 'text' : 'text'}
                   required
                   placeholder={mode === 'login'
-                    ? (language === 'zh' ? '请输入用户名' : 'Enter username')
+                    ? (language === 'zh' ? '请输入用户名或邮箱' : 'Enter username or email')
                     : t.login_emailPlaceholder}
                   value={mode === 'login' ? username : email}
                   onChange={(e) => mode === 'login' ? setUsername(e.target.value) : setEmail(e.target.value)}
@@ -291,6 +314,17 @@ export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
                 />
               </div>
             </div>
+
+            {mode === 'register' && (
+              <div>
+                <label className="block text-xs font-semibold text-neutral-700 mb-1">{language === 'zh' ? '邮箱验证码' : 'Email verification code'}</label>
+                <div className="flex gap-2">
+                  <input type="text" inputMode="numeric" maxLength={6} required placeholder={language === 'zh' ? '输入 6 位验证码' : '6-digit code'} value={verificationCode} onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ''))} className="min-w-0 flex-1 px-4 py-2.5 rounded-xl border border-neutral-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-xs sm:text-sm outline-none transition-all bg-white font-mono" />
+                  <button type="button" onClick={handleSendCode} disabled={sendingCode || countdown > 0} className="shrink-0 px-3 py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 disabled:opacity-50 text-neutral-700 text-xs font-semibold">{sendingCode ? (language === 'zh' ? '发送中…' : 'Sending…') : countdown ? `${countdown}s` : (language === 'zh' ? '获取验证码' : 'Send code')}</button>
+                </div>
+                <p className="mt-1.5 text-[11px] text-neutral-400">{language === 'zh' ? '验证码将发送到该邮箱，10 分钟内有效。' : 'The code is sent to this email and expires in 10 minutes.'}</p>
+              </div>
+            )}
 
             {/* Password (both modes) */}
             <div>
@@ -320,12 +354,6 @@ export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Demo credentials hint */}
-            {mode === 'login' && (
-              <p className="text-[11px] text-neutral-400 -mt-1.5">
-                {language === 'zh' ? '演示账号：' : 'Demo: '}<span className="font-mono text-neutral-500">admin</span> / <span className="font-mono text-neutral-500">admin123</span>
-              </p>
-            )}
 
             {/* Invite code (register only) */}
             {mode === 'register' && (
@@ -378,52 +406,6 @@ export const LoginView: React.FC<LoginViewProps> = ({ onNavigate }) => {
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            {/* Demo login */}
-            <button
-              type="button"
-              onClick={handleQuickDemo}
-              className="w-full py-2.5 rounded-xl bg-neutral-50 hover:bg-neutral-100 text-neutral-700 border border-neutral-200 text-xs font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer group"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-blue-600 group-hover:scale-110 transition-transform" />
-              <span>{t.login_demoBtn}</span>
-            </button>
-
-            {/* Divider */}
-            <div className="relative py-3">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-neutral-200" />
-              </div>
-              <div className="relative flex justify-center text-[11px] text-neutral-400">
-                <span className="bg-[#f8f9fb] px-3">
-                  {language === 'zh' ? '第三方账号登录' : 'Or continue with'}
-                </span>
-              </div>
-            </div>
-
-            {/* Third-party */}
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                type="button"
-                onClick={handleQuickDemo}
-                className="py-2.5 px-3 rounded-xl bg-white border border-neutral-200 hover:bg-neutral-50 text-neutral-700 text-xs font-medium flex items-center justify-center gap-2 transition-colors cursor-pointer"
-              >
-                <Github className="w-4 h-4 text-neutral-800" />
-                <span>{t.login_githubBtn}</span>
-              </button>
-              <button
-                type="button"
-                onClick={handleQuickDemo}
-                className="py-2.5 px-3 rounded-xl bg-white border border-neutral-200 hover:bg-neutral-50 text-neutral-700 text-xs font-medium flex items-center justify-center gap-2 transition-colors cursor-pointer"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
-                </svg>
-                <span>{t.login_googleBtn}</span>
-              </button>
-            </div>
           </form>
 
           {/* Security badge */}

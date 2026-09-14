@@ -208,6 +208,11 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ onNavigate }) => {
                       {t.footer_referral}
                     </button>
                   </li>
+                  <li>
+                    <button type="button" onClick={() => onNavigate('status')} className="hover:text-neutral-900 transition-colors text-left cursor-pointer">
+                      服务状态
+                    </button>
+                  </li>
                 </ul>
               </div>
 
